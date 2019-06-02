@@ -1,0 +1,167 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.technologies.zenlight.koreareviews"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations {
+        all {
+            exclude group: 'commons-logging', module: 'commons-logging'
+            exclude group: 'org.apache.httpcomponents'
+        }
+    }
+
+    signingConfigs {
+
+        releaseConfig {
+            keyAlias "zenlight"
+            keyPassword "android"
+            storePassword("android")
+            storeFile file('../signatures/korea_review.jks')
+
+        }
+
+        devConfig {
+            keyAlias "zenlight-dev"
+            keyPassword "android"
+            storePassword "android"
+            storeFile file('../signatures/korea_review_dev.jks')
+
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        developmentFlavor {
+
+            applicationId "com.technologies.zenlight.koreareviews.dev"
+            resValue "string", "app_name", "Korea Review-Dev"
+           // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
+
+        }
+
+        productionFlavor {
+
+            applicationId "com.technologies.zenlight.koreareviews"
+            resValue "string", "app_name", "Korea Review"
+           // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
+
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support Libraries
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.core:core-ktx:1.2.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    //Testing libraries
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.espressoCore", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoCore"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoCore"
+    testImplementation "junit:junit:$rootProject.junit"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockito"
+    testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamCrest"
+    androidTestImplementation "org.hamcrest:hamcrest-library:$rootProject.hamCrest"
+    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$rootProject.espressoCore"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoCore"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
+
+    testImplementation 'org.robolectric:robolectric:4.0-beta-1'
+    testImplementation 'org.robolectric:multidex:3.4.2'
+    testImplementation 'org.robolectric:shadows-support-v4:3.3.2'
+
+    //REST libraries
+    implementation "com.google.code.gson:gson:$rootProject.gson"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttp"
+    implementation("com.squareup.retrofit2:retrofit:$rootProject.retrofit") {
+        exclude group: "xpp3", module: "xpp3"
+        exclude group: "stax", module: "stax-api"
+        exclude group: "stax", module: "stax"
+    }
+    implementation("com.squareup.retrofit2:converter-gson:$rootProject.retrofit") {
+        exclude group: "xpp3", module: "xpp3"
+        exclude group: "stax", module: "stax-api"
+        exclude group: "stax", module: "stax"
+    }
+
+    //our view manipulation libraries
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageVersion"
+    implementation "com.daimajia.easing:library:$rootProject.yoyoAnimations"
+    implementation "com.daimajia.androidanimations:library:$rootProject.yoyoAndroidAnimation"
+    implementation "com.commit451:PhotoView:$rootProject.photoView"
+
+    //our tools libraries
+    implementation "com.orhanobut:logger:$rootProject.orhanobutLogger"
+
+    //our rxjava dependencies
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+    implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.rxjavaForRetrofit"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    // RxJava support for Room
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomDatabase"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
+
+    //our dagger2 dependencies
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+
+    // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$rootProject.archictectureComponents"
+    annotationProcessor "android.arch.lifecycle:common-java8:$rootProject.archictectureComponents"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomDatabase"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
+
+}
