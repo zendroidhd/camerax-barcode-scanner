@@ -1,4 +1,4 @@
-package com.technologies.zenlight.koreareviews
+package com.technologies.zenlight.xrate
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

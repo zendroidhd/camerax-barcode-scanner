@@ -1,4 +1,4 @@
-package com.technologies.zenlight.koreareviews.dependencyInjection.module
+package com.technologies.zenlight.xrate.dependencyInjection.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

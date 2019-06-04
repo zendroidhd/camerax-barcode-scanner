@@ -1,4 +1,4 @@
-package com.technologies.zenlight.koreareviews
+package com.technologies.zenlight.xrate
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.technologies.zenlight.koreareviews
+package com.technologies.zenlight.xrate
 
 import org.junit.Test
 

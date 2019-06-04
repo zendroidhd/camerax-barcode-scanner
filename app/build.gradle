@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.technologies.zenlight.koreareviews"
+        applicationId "com.technologies.zenlight.xrate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -65,7 +65,7 @@ android {
         developmentFlavor {
 
             applicationId "com.technologies.zenlight.koreareviews.dev"
-            resValue "string", "app_name", "Korea Review-Dev"
+            resValue "string", "app_name", "X-Rate Dev"
            // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
 
         }
@@ -73,7 +73,7 @@ android {
         productionFlavor {
 
             applicationId "com.technologies.zenlight.koreareviews"
-            resValue "string", "app_name", "Korea Review"
+            resValue "string", "app_name", "X-Rate"
            // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
 
         }
