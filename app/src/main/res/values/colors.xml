@@ -3,4 +3,25 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#fff</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white">#BFffffff</color>
+    <color name="semi_transparent_white">#66ffffff</color>
+    <color name="super_transparent_white">#33ffffff</color>
+    <color name="black_color">#000</color>
+    <color name="aqua">#008577</color>
+    <color name="aqua_dark">#00574B</color>
+    
+    <color name="material_icons_light">#d5d5d5</color>
+    <color name="material_icons_super_light">#fafafa</color>
+    <color name="material_icon">#999999</color>
+
+    <color name="transparent_black">#33000000</color>
+    <color name="transparent_black_dark">#BF000000</color>
+    <color name="transparent_black_darker">#D9000000</color>
+    <color name="mango">#e6b800</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="dark_blue">#141E30</color>
+
 </resources>

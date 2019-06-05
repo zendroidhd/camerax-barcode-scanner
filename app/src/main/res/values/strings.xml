@@ -1,3 +1,7 @@
 <resources>
     <string name="action_settings">Settings</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_message">to join the community</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="password">Password</string>
 </resources>
