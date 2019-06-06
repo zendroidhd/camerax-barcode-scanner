@@ -11,7 +11,7 @@ import dagger.android.*
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class XRateApplication : Application(), HasActivityInjector, HasServiceInjector,HasSupportFragmentInjector, LifecycleObserver {
+class EarnCreditsApplication : Application(), HasActivityInjector, HasServiceInjector,HasSupportFragmentInjector, LifecycleObserver {
 
     companion object {
         var isAppDestroyed = false

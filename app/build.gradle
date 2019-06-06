@@ -63,7 +63,7 @@ android {
 
         developmentFlavor {
 
-            applicationId "com.technologies.zenlight.xrate.dev"
+            applicationId "com.technologies.zenlight.earncredits.dev"
             resValue "string", "app_name", "Earn Credits Dev"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
 
@@ -71,7 +71,7 @@ android {
 
         productionFlavor {
 
-            applicationId "com.technologies.zenlight.xrate"
+            applicationId "com.technologies.zenlight.earncredits"
             resValue "string", "app_name", "Earn Credits"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
 

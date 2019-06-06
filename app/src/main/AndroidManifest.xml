@@ -33,7 +33,7 @@
     
     
     <application
-            android:name="com.technologies.zenlight.earncredits.userInterface.XRateApplication"
+            android:name="com.technologies.zenlight.earncredits.userInterface.EarnCreditsApplication"
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@mipmap/ic_launcher"

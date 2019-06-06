@@ -7,7 +7,7 @@ import com.technologies.zenlight.earncredits.dependencyInjection.builder.Service
 import com.technologies.zenlight.earncredits.dependencyInjection.module.AppModule
 import com.technologies.zenlight.earncredits.dependencyInjection.module.DatabaseModule
 import com.technologies.zenlight.earncredits.dependencyInjection.module.NetworkModule
-import com.technologies.zenlight.earncredits.userInterface.XRateApplication
+import com.technologies.zenlight.earncredits.userInterface.EarnCreditsApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -20,7 +20,7 @@ FragmentBuilder::class, ServiceBuilder::class, AppModule::class, NetworkModule::
 
 interface ApplicationComponent {
 
-     fun inject(app: XRateApplication)
+     fun inject(app: EarnCreditsApplication)
 
     @Component.Builder
     interface Builder {
