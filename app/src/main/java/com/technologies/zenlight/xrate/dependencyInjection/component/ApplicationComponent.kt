@@ -1,9 +1,9 @@
 package com.technologies.zenlight.xrate.dependencyInjection.component
 
 import android.app.Application
-import com.technologies.zenlight.xrate.dependencyInjection.Builder.ActivityBuilder
-import com.technologies.zenlight.xrate.dependencyInjection.Builder.FragmentBuilder
-import com.technologies.zenlight.xrate.dependencyInjection.Builder.ServiceBuilder
+import com.technologies.zenlight.xrate.dependencyInjection.builder.ActivityBuilder
+import com.technologies.zenlight.xrate.dependencyInjection.builder.FragmentBuilder
+import com.technologies.zenlight.xrate.dependencyInjection.builder.ServiceBuilder
 import com.technologies.zenlight.xrate.dependencyInjection.module.AppModule
 import com.technologies.zenlight.xrate.dependencyInjection.module.DatabaseModule
 import com.technologies.zenlight.xrate.dependencyInjection.module.NetworkModule
@@ -20,7 +20,7 @@ FragmentBuilder::class, ServiceBuilder::class, AppModule::class, NetworkModule::
 
 interface ApplicationComponent {
 
-    abstract fun inject(app: XRateApplication)
+     fun inject(app: XRateApplication)
 
     @Component.Builder
     interface Builder {
