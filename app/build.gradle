@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.technologies.zenlight.xrate"
+        applicationId "com.technologies.zenlight.earncredits"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -44,7 +44,7 @@ android {
             keyAlias "zenlight"
             keyPassword "android"
             storePassword("android")
-            storeFile file('../signatures/korea_review.jks')
+            storeFile file('../signatures/earn_credits.jks')
 
         }
 
@@ -52,7 +52,7 @@ android {
             keyAlias "zenlight-dev"
             keyPassword "android"
             storePassword "android"
-            storeFile file('../signatures/korea_review_dev.jks')
+            storeFile file('../signatures/earn_credits_dev.jks')
 
         }
     }
@@ -64,7 +64,7 @@ android {
         developmentFlavor {
 
             applicationId "com.technologies.zenlight.xrate.dev"
-            resValue "string", "app_name", "X-Rate Dev"
+            resValue "string", "app_name", "Earn Credits Dev"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
 
         }
@@ -72,7 +72,7 @@ android {
         productionFlavor {
 
             applicationId "com.technologies.zenlight.xrate"
-            resValue "string", "app_name", "X-Rate"
+            resValue "string", "app_name", "Earn Credits"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
 
         }
@@ -149,11 +149,11 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
 
     //our dagger2 dependencies
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
     implementation "com.google.dagger:dagger-android:$rootProject.dagger"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
     kapt  "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt  "com.google.dagger:dagger-android-processor:$rootProject.dagger"
-    kapt  "com.google.dagger:dagger-android-support:2.15"
 
 
     // if you use the support libraries

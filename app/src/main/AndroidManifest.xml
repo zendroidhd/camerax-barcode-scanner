@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.technologies.zenlight.xrate"
+          package="com.technologies.zenlight.earncredits"
           xmlns:tools="http://schemas.android.com/tools"
         >
     
@@ -33,7 +33,7 @@
     
     
     <application
-            android:name=".userInterface.XRateApplication"
+            android:name="com.technologies.zenlight.earncredits.userInterface.XRateApplication"
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@mipmap/ic_launcher"
@@ -45,7 +45,7 @@
             tools:replace="android:icon,android:fullBackupContent"
             >
       
-        <activity android:name=".userInterface.login.loginActivity.LoginActivity">
+        <activity android:name="com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
