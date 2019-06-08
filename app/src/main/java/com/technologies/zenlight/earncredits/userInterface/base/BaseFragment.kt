@@ -24,7 +24,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
 
     private var mRootView: View? = null
 
-    lateinit var dataBinding: T
+    lateinit var binding: T
     private set
 
 
@@ -65,15 +65,15 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        mRootView = dataBinding.root
+        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        mRootView = binding.root
         return mRootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataBinding.setVariable(bindingVariable, mViewModel)
-        dataBinding.executePendingBindings()
+        binding.setVariable(bindingVariable, mViewModel)
+        binding.executePendingBindings()
     }
 
     override fun onDetach() {

@@ -3,6 +3,10 @@ package com.technologies.zenlight.earncredits.utils
 import android.content.Context
 import android.net.ConnectivityManager
 
+
+var isUnitTesting = false
+
+
 fun isConnected(context: Context): Boolean {
 
     val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

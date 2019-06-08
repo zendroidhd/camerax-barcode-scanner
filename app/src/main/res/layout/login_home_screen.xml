@@ -4,162 +4,145 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android">
     
+    <data>
+        
+        <import type = "android.view.View"/>
+        
+        <variable
+                name = "viewModel"
+                type = "com.technologies.zenlight.earncredits.userInterface.login.loginFragment.LoginFragmentViewModel"/>
+    
+    </data>
+    
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        
+            
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/layout_blue_gradient"
+            android:background="@color/black_color"
             android:padding="15dp">
         
-        <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/ic_star"
-                android:layout_gravity="center_horizontal"
-                android:tint="@color/aqua"
-                />
-        
-        <TextView
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:id="@+id/layout_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:textStyle="bold"
-                android:textColor="@color/transparent_white"
-                android:text="X-Rate"
-                android:layout_gravity="center_horizontal"/>
+                android:visibility="invisible"
+                tools:visibility="visible"
+                android:orientation="vertical">
+    
+            <TextView
+                    android:id="@+id/tv_app_title_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pac_font"
+                    android:textSize="40sp"
+                    android:text="earn"
+                    android:textAlignment="center"
+                    android:textColor="@color/pac_yellow"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"/>
+    
+            <TextView
+                    android:id="@+id/tv_app_title_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pac_font"
+                    android:textSize="40sp"
+                    android:text="credits"
+                    android:textAlignment="center"
+                    android:textColor="@color/pac_yellow"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"/>
+            
+        </LinearLayout>
+        
+        
         
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".2"/>
         
-        <FrameLayout
+        <LinearLayout
+                android:id="@+id/layout_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-                
-                
-                
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_email"
-                        android:layout_gravity="center_vertical"
-                        />
-                
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/transparent_white"
-                        android:background="@color/transparent"
-                        app:hintTextColor="@color/white"
-                        android:hint="Email:">
-                    
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="35dp"
-                            android:textColor="@color/transparent_white"
-                            android:inputType="textEmailAddress"
-                            android:background="@color/transparent"/>
-                
-                </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible"
+                >
             
-            
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/super_transparent_white"
-                    android:layout_gravity="bottom"/>
-        
-        </FrameLayout>
-    
-        <FrameLayout
+        <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_height="40dp"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:hint="Enter Email"
+                android:textAlignment="center"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/transparent_white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:fontFamily="@font/arcade_font"
+                />
         
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_lock"
-                    android:layout_gravity="center_vertical"
-                    />
-        
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/transparent_white"
-                    android:background="@color/transparent"
-                    app:hintTextColor="@color/white"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/white"
-                    android:hint="Password:">
-            
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="35dp"
-                        android:textColor="@color/transparent_white"
-                        android:inputType="textPassword"
-                        android:background="@color/transparent"/>
-        
-            </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:hint="Enter Code"
+                android:textAlignment="center"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/transparent_white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:fontFamily="@font/arcade_font"
+                />
         
         
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/super_transparent_white"
-                    android:layout_gravity="bottom"/>
-    
-        </FrameLayout>
-    
-    
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_insert_coin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Enter"
-                android:textSize="25sp"
-                android:textColor="@color/transparent_white"
+                android:layout_height="75dp"
+                android:text="Insert Coin"
+                android:textSize="20sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@color/arcade_red"
                 android:layout_marginTop="24dp"
-                app:backgroundTint="@color/aqua_dark"
+                android:fontFamily="@font/arcade_font"
+                app:backgroundTint="@color/transparent"
                 app:rippleColor="@color/transparent_black"
                 app:cornerRadius="5dp"
                 />
-        
-        <LinearLayout
+    
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/transparent_white"
                 android:layout_gravity="center_horizontal"
-                android:background="?attr/selectableItemBackground">
-            
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/transparent_white"
-                    android:text="@string/sign_up"
-                    android:textStyle="bold"/>
-            
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/transparent_white"
-                    android:textSize="17sp"
-                    android:text="@string/sign_up_message"
-                    android:layout_marginStart="5dp"/>
-        
-        </LinearLayout>
-        
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:onClick = "@{()-> viewModel.onSignUpClicked()}"
+                android:fontFamily="@font/arcade_font"
+                app:rippleColor="@color/super_transparent_white"
+                />
+    
+    
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -170,8 +153,11 @@
                 android:textColor="@color/transparent_white"
                 android:layout_gravity="center_horizontal"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:onClick = "@{()-> viewModel.onForgotPasswordClicked()}"
+                android:fontFamily="@font/arcade_font"
+                app:rippleColor="@color/super_transparent_white"
                 />
-        
+        </LinearLayout>
         
         <View
                 android:layout_width="match_parent"
@@ -180,5 +166,7 @@
     
     
     </LinearLayout>
+    
+    </FrameLayout>
 
 </layout>
