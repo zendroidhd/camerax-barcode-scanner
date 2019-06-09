@@ -11,7 +11,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.technologies.zenlight.earncredits.data.AppDataManager
-import com.technologies.zenlight.earncredits.userInterface.base.BaseActivity
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -24,6 +23,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
         private set
 
     private var mRootView: View? = null
+    private var mViewModel: V? = null
 
     lateinit var dataBinding: T
         private set
@@ -47,7 +47,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
      *
      * @return view model instance
      */
-    abstract var mViewModel: V?
+    abstract val viewModel: V?
 
     abstract var progressSpinner: View?
 
@@ -68,6 +68,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         mRootView = dataBinding.root
+        mViewModel = viewModel
         return mRootView
     }
 

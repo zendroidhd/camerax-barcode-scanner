@@ -16,6 +16,7 @@ import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.LoginHomeScreenBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.login.forgotPassword.ForgotPasswordFragment
 import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
 import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
 import javax.inject.Inject
@@ -26,10 +27,7 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
     lateinit var appContext: Context
 
 
-
-    private var viewModel: LoginFragmentViewModel? = null
-
-    override var mViewModel: LoginFragmentViewModel? = null
+    override var viewModel: LoginFragmentViewModel? = null
 
     override var bindingVariable: Int = BR.viewModel
 
@@ -39,7 +37,6 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(LoginFragmentViewModel::class.java)
-        mViewModel = viewModel
         super.onCreate(savedInstanceState)
         viewModel?.callbacks = this
     }
@@ -92,6 +89,10 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
     }
 
     override fun onForgotPasswordClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        baseActivity?.let {
+            val manager = it.supportFragmentManager
+            val fragment = ForgotPasswordFragment.newInstance()
+            addFragmentFadeIn(fragment,manager,"ForgotPassword",null)
+        }
     }
 }

@@ -15,9 +15,7 @@ class SignUpFragment : BaseFragment<SignUpLayoutBinding, SignUpViewModel>(), Sig
     @Inject
     lateinit var dataModel: SignUpDataModel
 
-    private var viewModel: SignUpViewModel? = null
-
-    override var mViewModel: SignUpViewModel? = viewModel
+    override var viewModel: SignUpViewModel? = null
 
     override var bindingVariable: Int = 0
 
