@@ -5,19 +5,19 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.LoginHomeScreenBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
-import kotlinx.android.synthetic.main.login_home_screen.view.*
+import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
+import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewModel>(), LoginFragmentCallbacks {
@@ -25,11 +25,13 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
     @Inject
     lateinit var appContext: Context
 
+
+
     private var viewModel: LoginFragmentViewModel? = null
 
-    override var mViewModel: LoginFragmentViewModel? = viewModel
+    override var mViewModel: LoginFragmentViewModel? = null
 
-    override var bindingVariable: Int = 0
+    override var bindingVariable: Int = BR.viewModel
 
     override var layoutId: Int = R.layout.login_home_screen
 
@@ -37,6 +39,7 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(LoginFragmentViewModel::class.java)
+        mViewModel = viewModel
         super.onCreate(savedInstanceState)
         viewModel?.callbacks = this
     }
@@ -44,7 +47,7 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
          super.onCreateView(inflater, container, savedInstanceState)
         fadeInTitle()
-        return binding.root
+        return dataBinding.root
     }
 
     private fun playSound(){
@@ -62,26 +65,30 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
         YoYo.with(Techniques.FadeIn)
             .duration(3000)
             .repeatMode(0)
-            .onStart{ binding.layoutTitle.visibility = View.VISIBLE}
+            .onStart{ dataBinding.layoutTitle.visibility = View.VISIBLE}
             .onEnd{ fadeInContent() }
-            .playOn(binding.layoutTitle)
+            .playOn(dataBinding.layoutTitle)
     }
 
     private fun fadeInContent() {
         YoYo.with(Techniques.FadeIn)
             .duration(1500)
             .repeatMode(0)
-            .onStart { animator -> binding.layoutContent.visibility = View.VISIBLE }
+            .onStart { animator -> dataBinding.layoutContent.visibility = View.VISIBLE }
             .onEnd{ animator -> fadeInInsertCoin()  }
-            .playOn(binding.layoutContent)
+            .playOn(dataBinding.layoutContent)
     }
 
     private fun fadeInInsertCoin() {
-        binding.btnInsertCoin.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in_fade_out))
+        dataBinding.btnInsertCoin.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in_fade_out))
     }
 
     override fun onSignUpClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        baseActivity?.let {
+            val manager = it.supportFragmentManager
+            val fragment = SignUpFragment.newInstance()
+            addFragmentFadeIn(fragment,manager,"SignUp",null)
+        }
     }
 
     override fun onForgotPasswordClicked() {

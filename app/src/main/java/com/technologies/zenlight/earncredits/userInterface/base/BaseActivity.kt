@@ -34,7 +34,7 @@ abstract class BaseActivity<T : ViewDataBinding, V: ViewModel> : AppCompatActivi
     private set
 
     /**
-     * Override for set binding variable
+     * Override for set dataBinding variable
      *
      * @return variable id
      */
