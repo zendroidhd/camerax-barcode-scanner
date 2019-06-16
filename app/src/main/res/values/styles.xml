@@ -24,5 +24,14 @@
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorPrimary">@color/white</item>
     </style>
+    
+    <style name="ArcadeTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/arcade_font</item>
+    </style>
+    
+    <style name="IconOnlyButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
 
 </resources>

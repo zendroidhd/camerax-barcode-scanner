@@ -16,6 +16,7 @@ import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.LoginHomeScreenBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivity
 import com.technologies.zenlight.earncredits.userInterface.login.forgotPassword.ForgotPasswordFragment
 import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
 import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
@@ -94,5 +95,9 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
             val fragment = ForgotPasswordFragment.newInstance()
             addFragmentFadeIn(fragment,manager,"ForgotPassword",null)
         }
+    }
+
+    override fun onEnterButtonClicked() {
+        context?.let { baseActivity?.startActivity(HomeActivity.newIntent(it)) }
     }
 }

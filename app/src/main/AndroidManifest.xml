@@ -45,12 +45,15 @@
             tools:replace="android:icon,android:fullBackupContent"
             >
       
-        <activity android:name="com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivity">
+        <activity android:name="com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".userInterface.home.homeActivity.HomeActivity"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

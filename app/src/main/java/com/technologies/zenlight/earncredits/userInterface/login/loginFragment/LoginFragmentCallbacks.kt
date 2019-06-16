@@ -5,4 +5,6 @@ interface LoginFragmentCallbacks {
     fun onForgotPasswordClicked()
 
     fun onSignUpClicked()
+
+    fun onEnterButtonClicked()
 }

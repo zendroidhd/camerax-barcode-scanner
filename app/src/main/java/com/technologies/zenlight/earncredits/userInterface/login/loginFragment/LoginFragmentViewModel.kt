@@ -18,4 +18,8 @@ class LoginFragmentViewModel : BaseViewModel() {
     fun onSignUpClicked() {
         callbacks?.onSignUpClicked()
     }
+
+    fun onEnterButtonClicked() {
+        callbacks?.onEnterButtonClicked()
+    }
 }

@@ -18,20 +18,21 @@ import javax.inject.Inject
 
 abstract class BaseActivity<T : ViewDataBinding, V: ViewModel> : AppCompatActivity(), LifecycleOwner {
 
-    protected val sdk = Build.VERSION.SDK_INT
 
     @Inject
     lateinit var dataManager: AppDataHelper
 
     var loadingTag = "BaseActivity"
+    protected val sdk = Build.VERSION.SDK_INT
+    private var mViewModel: V? = null
+    lateinit var dataBinding: T
+        private set
 
     companion object {
         private var isIdle = true
-        private var compositeDisposable: CompositeDisposable? = null
     }
 
-     lateinit var dataBinding: T
-    private set
+
 
     /**
      * Override for set dataBinding variable
@@ -51,7 +52,7 @@ abstract class BaseActivity<T : ViewDataBinding, V: ViewModel> : AppCompatActivi
      *
      * @return view model instance
      */
-    abstract var mViewModel: V?
+    abstract var viewModel: V?
 
 
     abstract var progressSpinner: View?
@@ -64,6 +65,7 @@ abstract class BaseActivity<T : ViewDataBinding, V: ViewModel> : AppCompatActivi
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         performDataBinding()
+        mViewModel = viewModel
     }
 
    fun hideKeyboard() {

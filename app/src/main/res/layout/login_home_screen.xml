@@ -120,8 +120,9 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/arcade_font"
                 app:backgroundTint="@color/transparent"
-                app:rippleColor="@color/transparent_black"
+                app:rippleColor="@color/transparent_white"
                 app:cornerRadius="5dp"
+                android:onClick = "@{()-> viewModel.onEnterButtonClicked()}"
                 />
     
         <com.google.android.material.button.MaterialButton

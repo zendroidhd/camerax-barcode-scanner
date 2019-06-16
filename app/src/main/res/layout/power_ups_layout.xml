@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/black_color"
+            android:padding="15dp">
+        
+        
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+            
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Power Ups"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                style="@style/ArcadeTextView"
+                android:layout_gravity="center_vertical"
+                android:drawableStart="@drawable/power_up"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:scaleY="1.1"/>
+            
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_power_ups"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp">
+                
+            </androidx.recyclerview.widget.RecyclerView>
+        
+        </LinearLayout>
+    
+    </FrameLayout>
+
+</layout>

@@ -1,5 +1,9 @@
 package com.technologies.zenlight.earncredits.dependencyInjection.builder
 
+import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.ChallengesFragment
+import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragment
+import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsFragment
+import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsViewModel
 import com.technologies.zenlight.earncredits.userInterface.login.forgotPassword.ForgotPasswordFragment
 import com.technologies.zenlight.earncredits.userInterface.login.loginFragment.LoginFragment
 import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
@@ -17,4 +21,13 @@ abstract class FragmentBuilder {
 
     @ContributesAndroidInjector
     internal abstract fun bindForgotPasswordFragment(): ForgotPasswordFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindChallengesFragment(): ChallengesFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindPowerUpsFragment(): PowerUpsFragment
 }
