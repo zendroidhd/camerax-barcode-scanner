@@ -7,4 +7,11 @@ class HomeFragmentViewModel: BaseViewModel() {
     /******** Getters and Setters *********/
 
     var callbacks: HomeFragmentCallbacks? = null
+
+
+    /******** OnClick Listeners **********/
+
+    fun onHamburgerClicked() {
+        callbacks?.onHamburgerClicked()
+    }
 }

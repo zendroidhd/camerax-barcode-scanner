@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.ChallengesLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.ChallengesAdapter
 import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragmentViewModel
 
 class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewModel>() {
@@ -29,6 +31,10 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        dataBinding.rvChallenges.run {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = ChallengesAdapter()
+        }
         return dataBinding.root
     }
 }

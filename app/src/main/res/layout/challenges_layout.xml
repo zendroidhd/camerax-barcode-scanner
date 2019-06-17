@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <FrameLayout
             android:layout_width="match_parent"
@@ -24,17 +25,9 @@
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_ghost_1"/>
-    
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_ghost_2"/>
-    
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_ghost_3"/>
+                        android:scaleY=".8"
+                        android:scaleX=".8"
+                        android:src="@drawable/ic_ghost"/>
     
                 <TextView
                         android:layout_width="match_parent"
@@ -45,7 +38,7 @@
                         style="@style/ArcadeTextView"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
-                        android:layout_marginStart="15dp"/>
+                        android:layout_marginStart="10dp"/>
                 
             </LinearLayout>
             
@@ -54,10 +47,88 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    tools:listitem="@layout/item_list_row">
             
             </androidx.recyclerview.widget.RecyclerView>
         
+        </LinearLayout>
+        
+        <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="25dp"
+                >
+    
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_power_pellet"
+                    android:layout_gravity="center"
+                    />
+    
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_fab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/IconOnlyButton"
+                    app:rippleColor="@color/super_transparent_white"
+                    app:iconTint="@color/black_color"
+                    app:icon="@drawable/ic_add_black_24dp"/>
+            
+        </FrameLayout>
+    
+        <LinearLayout
+                android:id="@+id/layout_empty_power_ups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                tools:visibility="gone"
+                >
+        
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="15dp">
+            
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_ghost_1"/>
+            
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_ghost_2"/>
+            
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_ghost_3"/>
+            
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_ghost_4"/>
+        
+            </LinearLayout>
+        
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You have no challenges. To stay focused and conquer your targets, add a challenge."
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    style="@style/ArcadeTextView"
+                    android:paddingBottom="15dp"
+                    android:lineSpacingExtra="15dp"
+                    android:scaleY="1.1"/>
+    
         </LinearLayout>
     
     </FrameLayout>

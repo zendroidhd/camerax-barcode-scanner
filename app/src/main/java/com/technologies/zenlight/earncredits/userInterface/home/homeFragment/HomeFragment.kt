@@ -13,9 +13,13 @@ import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.HomeLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
 import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.ChallengesFragment
+import com.technologies.zenlight.earncredits.userInterface.home.mainMenu.MainMenuFragment
 import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsFragment
+import com.technologies.zenlight.earncredits.utils.addFragmentHorizontally
+import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontally
+import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontallyReversed
 
-class HomeFragment: BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), HomeFragmentCallbacks  {
+class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), HomeFragmentCallbacks {
 
     private var pagerAdapter: PagerAdapter? = null
 
@@ -36,16 +40,26 @@ class HomeFragment: BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), Ho
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        activity?.let { pagerAdapter = PagerAdapter(it.supportFragmentManager) }
+        activity?.let {
+            pagerAdapter = PagerAdapter(childFragmentManager)
+        }
         dataBinding.vpMain.adapter = pagerAdapter
         dataBinding.viewpagertab.setupWithViewPager(dataBinding.vpMain)
-
         return dataBinding.root
     }
 
-    private class PagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    override fun onHamburgerClicked() {
+        baseActivity?.let {
+            val manager = it.supportFragmentManager
+            val fragment = MainMenuFragment.newInstance()
+            replaceFragmentHorizontallyReversed(fragment, manager, "MainMenuFragment", null)
+        }
+    }
+
+    private class PagerAdapter(fm: FragmentManager) :
+        FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
-            return if (position == 0){
+            return if (position == 0) {
                 ChallengesFragment()
             } else {
                 PowerUpsFragment()

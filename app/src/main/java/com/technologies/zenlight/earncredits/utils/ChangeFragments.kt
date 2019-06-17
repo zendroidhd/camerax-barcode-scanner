@@ -89,6 +89,23 @@ fun replaceFragmentHorizontally(fragmentId: Fragment, fragmentManager: FragmentM
     }
 }
 
+fun replaceFragmentHorizontallyReversed(fragmentId: Fragment, fragmentManager: FragmentManager, tag: String, args: Bundle?){
+    val transaction = fragmentManager.beginTransaction()
+    fragmentId.arguments = args
+
+    if (isUnitTesting){//Robolectric cannot handle fragment animations (gets stuck in infinite loop)
+        transaction.add(R.id.fragment_container, fragmentId, tag)
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+    } else {
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+        transaction.replace(R.id.fragment_container, fragmentId, tag)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+}
+
 
 private fun showFragmentWithNoAnimations(){
 }

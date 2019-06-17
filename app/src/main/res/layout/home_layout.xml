@@ -2,9 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <androidx.drawerlayout.widget.DrawerLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <data>
+        
+        <import type="android.view.View"/>
+        
+        <variable
+                name="viewModel"
+                type="com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragmentViewModel"/>
+    
+    </data>
             
     <FrameLayout
             android:layout_width="match_parent"
@@ -21,39 +27,53 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/transparent_black_darker"/>
+                android:background="#99000000"/>
         
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
             
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="15dp">
                 
-                <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_hamburger"
-                        android:layout_marginEnd="25dp"
-                        android:visibility="gone"/>
                 
                 <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_hamburger"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="25dp"
                         style="@style/IconOnlyButton"
                         app:rippleColor="@color/pac_yellow"
                         app:iconTint="@color/white"
-                        app:icon="@drawable/ic_hamburger"/>
+                        app:icon="@drawable/ic_hamburger"
+                        android:onClick = "@{()-> viewModel.onHamburgerClicked()}"
+                        />
                 
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1"/>
+                <FrameLayout
+                        android:id="@+id/btn_heart"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true">
+    
+                    <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_heart"/>
+                    
+                    <com.google.android.material.button.MaterialButton
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                            app:rippleColor="@color/super_transparent_white"
+                            app:backgroundTint="@color/transparent"
+                            />
+                    
+                </FrameLayout>
+                
     
                 <TextView
                         android:layout_width="wrap_content"
@@ -62,11 +82,13 @@
                         android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                         style="@style/ArcadeTextView"
-                        android:layout_gravity="center_vertical"
+                        android:layout_centerInParent="true"
+                        android:layout_toEndOf="@id/btn_hamburger"
+                        android:layout_toStartOf="@id/btn_heart"
                         android:scaleY="1.1"/>
                 
                 
-            </LinearLayout>
+            </RelativeLayout>
             
             <FrameLayout
                     android:layout_width="match_parent"
@@ -102,50 +124,5 @@
         </LinearLayout>
     
     </FrameLayout>
-        
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@color/black_color">
-            
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
     
-              
-    
-                <com.google.android.material.button.MaterialButton
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        style="@style/IconOnlyButton"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="35dp"
-                        android:padding="10dp"
-                        app:iconTint="@null"
-                        app:cornerRadius="60dp"
-                        app:rippleColor="@color/super_transparent_white"
-                        app:icon="@drawable/ic_pac_man"/>
-    
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="BigPoppaJock"
-                        android:textColor="@color/pac_yellow"
-                        android:textSize="13sp"
-                        style="@style/ArcadeTextView"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="25dp"
-                        />
-                
-            </LinearLayout>
-            
-         
-            
-        </FrameLayout>
-    
-    </androidx.drawerlayout.widget.DrawerLayout>
-
 </layout>

@@ -33,5 +33,10 @@
         <item name="iconPadding">0dp</item>
         <item name="iconGravity">textStart</item>
     </style>
+    
+    <style name="AppTheme.ClearBackGroundWhiteRipple">
+        <item name="colorControlHighlight">@color/transparent_white</item>
+    
+    </style>
 
 </resources>
