@@ -3,13 +3,13 @@ package com.technologies.zenlight.earncredits.utils
 import android.app.Activity
 import androidx.appcompat.app.AlertDialog
 
-fun showAlertDialog(activity: Activity?, title: String, message: String){
+fun showAlertDialog(activity: Activity?, title: String, message: String, negativeBtnText:String = "OK"){
     activity?.let {
         if (!it.isFinishing && !it.isDestroyed){
             val dialog = AlertDialog.Builder(activity)
             dialog.setTitle(title)
                 .setMessage(message)
-                .setNegativeButton("OK") {_, _ -> }
+                .setNegativeButton(negativeBtnText) {_, _ -> }
             dialog.show()
         }
     }

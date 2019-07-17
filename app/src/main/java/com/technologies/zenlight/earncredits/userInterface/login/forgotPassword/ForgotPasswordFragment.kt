@@ -1,5 +1,7 @@
 package com.technologies.zenlight.earncredits.userInterface.login.forgotPassword
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +11,19 @@ import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.ForgotPasswordLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivityCallbacks
 import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpViewModel
+import com.technologies.zenlight.earncredits.utils.isEmailValid
+import com.technologies.zenlight.earncredits.utils.showAlertDialog
+import com.technologies.zenlight.earncredits.utils.showPasswordResetAlertDialog
 import javax.inject.Inject
 
 class ForgotPasswordFragment : BaseFragment<ForgotPasswordLayoutBinding, ForgotPasswordViewModel>(), ForgotPasswordCallbacks {
 
     @Inject
     lateinit var dataModel: ForgotPasswordDataModel
+
+    private var parentCallbacks: LoginActivityCallbacks? = null
 
     override var viewModel: ForgotPasswordViewModel? = null
 
@@ -27,6 +35,11 @@ class ForgotPasswordFragment : BaseFragment<ForgotPasswordLayoutBinding, ForgotP
 
     companion object {
         fun newInstance(): ForgotPasswordFragment = ForgotPasswordFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parentCallbacks = context as LoginActivityCallbacks
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +56,43 @@ class ForgotPasswordFragment : BaseFragment<ForgotPasswordLayoutBinding, ForgotP
         return  dataBinding.root
     }
 
+    override fun handleError(title: String, body: String) {
+        parentCallbacks?.hideProgressSpinnerView()
+        showAlertDialog(activity, title, body)
+    }
+
+    override fun showEmailNotFoundAlert() {
+        parentCallbacks?.hideProgressSpinnerView()
+        val title = "Invalid Email"
+        val body = "The submitted email was not found"
+        showAlertDialog(activity,title,body,"Try Again")
+    }
+
+    override fun showPasswordResetAlert() {
+        parentCallbacks?.hideProgressSpinnerView()
+        showPasswordResetAlertDialog(activity,::onExitButtonClicked)
+    }
+
+
     override fun onExitButtonClicked() {
         baseActivity?.onBackPressed()
     }
 
     override fun onResetButtonClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val email = dataBinding.etEmail.text.toString()
+
+        if (isEmailValid(email)) {
+            parentCallbacks?.showProgressSpinnerView()
+            viewModel?.submitUserCredentials(email)
+
+        } else {
+            val title = "Invalid Email"
+            val body = "Please enter a valid email"
+            showAlertDialog(activity,title,body,"Try Again")
+        }
+    }
+
+    override fun getActivityContext(): Activity? {
+        return activity
     }
 }
