@@ -3,11 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/super_transparent_white</item>
+        <item name="colorPrimary">@color/black_color</item>
         <item name="colorPrimaryDark">@color/black_color</item>
         <item name="colorAccent">@color/arcade_red</item>
         <item name="android:navigationBarColor">@color/black_color</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowActivityTransitions">true</item>
 
     </style>
     
@@ -35,8 +36,11 @@
     </style>
     
     <style name="AppTheme.ClearBackGroundWhiteRipple">
-        <item name="colorControlHighlight">@color/transparent_white</item>
+        <item name="colorControlHighlight">@color/super_transparent_white</item>
+    </style>
     
+    <style name="TextInputStyle" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlActivated">@color/transparent_white</item>
     </style>
 
 </resources>

@@ -25,6 +25,7 @@ class LoginActivity : BaseActivity<FragmentContainerBinding, LoginActivityViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(LoginActivityViewModel::class.java)
         super.onCreate(savedInstanceState)
+        progressSpinner = dataBinding.layoutProgress.progressSpinner
         viewModel?.callbacks = this
         instantiateFragment()
     }
@@ -39,6 +40,14 @@ class LoginActivity : BaseActivity<FragmentContainerBinding, LoginActivityViewMo
                 .add(R.id.fragment_container, fragment)
                 .commit()
         }
+    }
+
+    override fun showProgressSpinnerView() {
+        showProgressSpinner()
+    }
+
+    override fun hideProgressSpinnerView() {
+        hideProgressSpinner()
     }
 
 }
