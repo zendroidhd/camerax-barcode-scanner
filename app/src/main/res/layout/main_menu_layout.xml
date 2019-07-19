@@ -16,7 +16,8 @@
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black_color">
+            android:background="@color/black_color"
+            android:padding="16dp">
     
         <LinearLayout
                 android:layout_width="match_parent"
@@ -73,6 +74,7 @@
                     android:textColor="@color/transparent_white"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:fontFamily="@font/arcade_font"
+                    android:onClick="@{()-> viewModel.onMyProfileClicked()}"
                     app:rippleColor="@color/super_transparent_white"
                     />
         
@@ -89,6 +91,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:fontFamily="@font/arcade_font"
                     app:rippleColor="@color/super_transparent_white"
+                    android:onClick="@{()-> viewModel.onGameOptionsClicked()}"
                     />
         
             <com.google.android.material.button.MaterialButton
@@ -104,6 +107,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:fontFamily="@font/arcade_font"
                     app:rippleColor="@color/super_transparent_white"
+                    android:onClick="@{()-> viewModel.onLeaderBoardsClicked()}"
                     />
         
             <com.google.android.material.button.MaterialButton
@@ -119,6 +123,23 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:fontFamily="@font/arcade_font"
                     app:rippleColor="@color/super_transparent_white"
+                    android:onClick="@{()-> viewModel.onDailyCheatCodeClicked()}"
+                    />
+    
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_exit_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:text="Exit Game"
+                    android:textAllCaps="false"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/transparent_white"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:fontFamily="@font/arcade_font"
+                    app:rippleColor="@color/super_transparent_white"
+                    android:onClick="@{()-> viewModel.onExitGameClicked()}"
                     />
     
         </LinearLayout>

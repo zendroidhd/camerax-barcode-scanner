@@ -61,11 +61,6 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
         return dataBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        checkIfUserIsSignedIn()
-    }
-
     override fun onResume() {
         super.onResume()
         populateSavedCredentials()
@@ -143,15 +138,6 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
     private fun populateSavedCredentials() {
         dataBinding.etEmail.setText(dataManager.getSharedPrefs().userEmail)
         dataBinding.etCode.setText(dataManager.getSharedPrefs().userPassword)
-    }
-
-    private fun checkIfUserIsSignedIn() {
-        if (dataManager.getSharedPrefs().isLoggedIn) {
-            activity?.let {
-                it.finishAffinity()
-                it.startActivity(HomeActivity.newIntent(it))
-            }
-        }
     }
 
     private fun fadeInTitle() {

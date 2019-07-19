@@ -9,6 +9,8 @@ import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.MainMenuLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.utils.showSignOutAlertDialog
+import com.technologies.zenlight.earncredits.utils.showToastShort
 
 class MainMenuFragment : BaseFragment<MainMenuLayoutBinding, MainMenuViewModel>(), MainMenuCallbacks {
 
@@ -36,7 +38,34 @@ class MainMenuFragment : BaseFragment<MainMenuLayoutBinding, MainMenuViewModel>(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-
         return dataBinding.root
+    }
+
+    override fun onExitGameClicked() {
+       showSignOutAlertDialog(activity, ::exitGame)
+    }
+
+    override fun onGameOptionsClicked() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onLeaderBoardsClicked() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDailyCheatCodeClicked() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onMyProfileClicked() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun exitGame() {
+        dataManager.getSharedPrefs().isLoggedIn = false
+        activity?.let {
+            it.finishAffinity()
+            showToastShort(activity,"Innovate, Create, and Keep Grinding")
+        }
     }
 }

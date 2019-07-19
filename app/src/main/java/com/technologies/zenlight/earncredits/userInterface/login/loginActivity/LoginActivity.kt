@@ -7,6 +7,7 @@ import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.data.AppDataManager
 import com.technologies.zenlight.earncredits.databinding.FragmentContainerBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseActivity
+import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivity
 import com.technologies.zenlight.earncredits.userInterface.login.loginFragment.LoginFragment
 import javax.inject.Inject
 
@@ -27,7 +28,13 @@ class LoginActivity : BaseActivity<FragmentContainerBinding, LoginActivityViewMo
         super.onCreate(savedInstanceState)
         progressSpinner = dataBinding.layoutProgress.progressSpinner
         viewModel?.callbacks = this
-        instantiateFragment()
+
+        if (dataManager.getSharedPrefs().isLoggedIn) {
+            finishAffinity()
+            startActivity(HomeActivity.newIntent(this))
+        } else {
+            instantiateFragment()
+        }
     }
 
     private fun instantiateFragment() {

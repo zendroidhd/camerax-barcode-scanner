@@ -59,7 +59,7 @@
                 android:paddingEnd="5dp"
                 android:cursorVisible="true"
                 android:hint="Enter Email"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:textColorHint="@color/transparent_white"
@@ -78,7 +78,7 @@
                 android:background="@null"
                 android:cursorVisible="true"
                 android:hint="Enter Code"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:textColorHint="@color/transparent_white"
@@ -105,21 +105,6 @@
     
     
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_start_new_game"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:text="Start New Game"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textAppearance="@style/Base.Widget.AppCompat.TextView"
-                android:textColor="@color/pac_yellow"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:fontFamily="@font/arcade_font"
-                app:rippleColor="@color/super_transparent_white"
-                />
-    
-        <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,8 +117,25 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:fontFamily="@font/arcade_font"
                 app:rippleColor="@color/super_transparent_white"
+                android:onClick = "@{()-> viewModel.onExitClicked()}"
                 />
     
+    
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_start_new_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="Start New Game"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                android:textAppearance="@style/Base.Widget.AppCompat.TextView"
+                android:textColor="@color/pac_yellow"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:fontFamily="@font/arcade_font"
+                app:rippleColor="@color/super_transparent_white"
+                android:onClick="@{()-> viewModel.onStartNewGameClicked()}"
+                />
     
         <View
                 android:layout_width="match_parent"
