@@ -30,7 +30,6 @@ class SignUpFragment : BaseFragment<SignUpLayoutBinding, SignUpViewModel>(), Sig
 
     override var layoutId: Int = R.layout.sign_up_layout
 
-    override var progressSpinner: View? = null
 
     companion object {
         fun newInstance(): SignUpFragment = SignUpFragment()
@@ -89,10 +88,10 @@ class SignUpFragment : BaseFragment<SignUpLayoutBinding, SignUpViewModel>(), Sig
 
     override fun signUserIntoApp() {
         parentCallbacks?.hideProgressSpinnerView()
-        activity?.let {
+        activity?.let { activity ->
             saveCredentials()
-            //it.finish()
-            context?.let { baseActivity?.startActivity(HomeActivity.newIntent(it)) }
+            activity.finish()
+            context?.let { baseActivity?.startActivity(HomeActivity.newIntent(activity)) }
         }
     }
 
@@ -103,7 +102,6 @@ class SignUpFragment : BaseFragment<SignUpLayoutBinding, SignUpViewModel>(), Sig
     private fun saveCredentials() {
         val email = dataBinding.etEmail.text.toString()
         val passWord = dataBinding.etCode.text.toString()
-
         dataManager.getSharedPrefs().userEmail = email
         dataManager.getSharedPrefs().isLoggedIn = true
         dataManager.getSharedPrefs().userPassword = passWord

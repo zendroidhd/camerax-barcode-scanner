@@ -1,5 +1,7 @@
 package com.technologies.zenlight.earncredits.userInterface.login.loginActivity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
@@ -21,6 +23,10 @@ class LoginActivity : BaseActivity<FragmentContainerBinding, LoginActivityViewMo
     override var layoutId: Int = R.layout.fragment_container
 
     override var progressSpinner: View? = null
+
+    companion object {
+        fun newIntent(context: Context) = Intent(context, LoginActivity::class.java)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

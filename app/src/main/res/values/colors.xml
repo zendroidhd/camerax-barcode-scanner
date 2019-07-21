@@ -24,5 +24,6 @@
     <color name="mango">#e6b800</color>
     <color name="cyan">#00FFFF</color>
     <color name="dark_blue">#141E30</color>
+    <color name="toggle_green_light">#4c8938</color>
 
 </resources>

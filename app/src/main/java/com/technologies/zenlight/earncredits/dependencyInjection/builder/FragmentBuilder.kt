@@ -1,6 +1,7 @@
 package com.technologies.zenlight.earncredits.dependencyInjection.builder
 
 import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.ChallengesFragment
+import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.createNewChallenge.CreateChallengeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.mainMenu.MainMenuFragment
 import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsFragment
@@ -34,4 +35,7 @@ abstract class FragmentBuilder {
 
     @ContributesAndroidInjector
     internal abstract fun bindMainMenuFragment(): MainMenuFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindCreateChallengeFragment(): CreateChallengeFragment
 }

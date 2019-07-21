@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
     
     <data>
         
@@ -53,41 +54,62 @@
                         android:onClick = "@{()-> viewModel.onHamburgerClicked()}"
                         />
                 
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true"
+                        android:layout_toEndOf="@id/btn_hamburger"
+                        android:layout_toStartOf="@id/btn_heart">
+                    
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            style="@style/ArcadeTextView"
+                            android:text="Credits: "/>
+    
+                    <TextView
+                            android:id="@+id/tv_credits"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1,000"
+                            android:textColor="@color/white"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            style="@style/ArcadeTextView"
+                            android:scaleY="1.1"/>
+                    
+                </LinearLayout>
+    
                 <FrameLayout
                         android:id="@+id/btn_heart"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true">
-    
+        
                     <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_heart"/>
-                    
-                    <com.google.android.material.button.MaterialButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                            app:rippleColor="@color/super_transparent_white"
-                            app:backgroundTint="@color/transparent"
-                            />
-                    
-                </FrameLayout>
-                
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="1dp"
+                            android:src="@drawable/ic_heart"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            style="@style/AppTheme.ClearBackGroundWhiteRipple"/>
+        
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="99"
+                            android:textSize="12sp"
+                            style="@style/ArcadeTextView"
+                            android:textColor="@color/white"/>
     
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Credits: 1,000"
-                        android:textColor="@color/white"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        style="@style/ArcadeTextView"
-                        android:layout_centerInParent="true"
-                        android:layout_toEndOf="@id/btn_hamburger"
-                        android:layout_toStartOf="@id/btn_heart"
-                        android:scaleY="1.1"/>
-                
-                
+    
+                </FrameLayout>
+
+
             </RelativeLayout>
             
             <FrameLayout

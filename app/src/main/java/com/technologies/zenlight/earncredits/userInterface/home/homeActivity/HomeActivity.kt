@@ -13,6 +13,8 @@ import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.Hom
 class HomeActivity : BaseActivity<FragmentContainerBinding, HomeActivityViewModel>(), HomeActivityCallbacks {
 
 
+    private var isLoadingData = false
+
     override var viewModel: HomeActivityViewModel? = null
 
     override var bindingVariable: Int = 0
@@ -29,8 +31,23 @@ class HomeActivity : BaseActivity<FragmentContainerBinding, HomeActivityViewMode
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(HomeActivityViewModel::class.java)
         super.onCreate(savedInstanceState)
+        progressSpinner = dataBinding.layoutProgress.progressSpinner
         viewModel?.callbacks = this
         instantiateFragment()
+    }
+
+    override fun showProgressSpinnerView() {
+        showProgressSpinner()
+        isLoadingData = true
+    }
+
+    override fun hideProgressSpinnerView() {
+        hideProgressSpinner()
+        isLoadingData = false
+    }
+
+    override fun isLoading(): Boolean {
+        return isLoadingData
     }
 
 

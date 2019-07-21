@@ -9,6 +9,7 @@ import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.databinding.MainMenuLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivity
 import com.technologies.zenlight.earncredits.utils.showSignOutAlertDialog
 import com.technologies.zenlight.earncredits.utils.showToastShort
 
@@ -26,8 +27,6 @@ class MainMenuFragment : BaseFragment<MainMenuLayoutBinding, MainMenuViewModel>(
     override var bindingVariable: Int = BR.viewModel
 
     override var layoutId: Int = R.layout.main_menu_layout
-
-    override var progressSpinner: View? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +64,7 @@ class MainMenuFragment : BaseFragment<MainMenuLayoutBinding, MainMenuViewModel>(
         dataManager.getSharedPrefs().isLoggedIn = false
         activity?.let {
             it.finishAffinity()
+            startActivity(LoginActivity.newIntent(it))
             showToastShort(activity,"Innovate, Create, and Keep Grinding")
         }
     }

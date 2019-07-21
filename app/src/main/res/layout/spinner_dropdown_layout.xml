@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:textSize="14sp"
+          android:fontFamily="@font/arcade_font"
+          android:textColor="@color/black_color"
+          android:padding="20dp"
+          tools:text="Small Task"
+          android:layout_height="wrap_content"/>

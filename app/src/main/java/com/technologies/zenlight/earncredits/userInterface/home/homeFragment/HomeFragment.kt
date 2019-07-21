@@ -18,8 +18,13 @@ import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.
 import com.technologies.zenlight.earncredits.utils.addFragmentHorizontally
 import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontally
 import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontallyReversed
+import com.technologies.zenlight.earncredits.utils.showAlertDialog
+import javax.inject.Inject
 
 class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), HomeFragmentCallbacks {
+
+    @Inject
+    lateinit var dataModel: HomeFragmentDataModel
 
     private var pagerAdapter: PagerAdapter? = null
 
@@ -29,23 +34,38 @@ class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), H
 
     override var layoutId: Int = R.layout.home_layout
 
-    override var progressSpinner: View? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(HomeFragmentViewModel::class.java)
         super.onCreate(savedInstanceState)
         viewModel?.callbacks = this
+        viewModel?.dataModel = dataModel
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         activity?.let {
-            pagerAdapter = PagerAdapter(childFragmentManager)
+            pagerAdapter = PagerAdapter(childFragmentManager,this)
         }
         dataBinding.vpMain.adapter = pagerAdapter
         dataBinding.viewpagertab.setupWithViewPager(dataBinding.vpMain)
+        queryData()
         return dataBinding.root
+    }
+
+    override fun queryData() {
+        viewModel?.getUserProfile()
+    }
+
+    override fun handleError(title: String, body: String) {
+        showAlertDialog(activity,title,body)
+    }
+
+    override fun onUserProfileReturnedSuccessfully() {
+        viewModel?.let {
+            val profile = it.userProfile
+            dataBinding.tvCredits.text = profile?.credits.toString()
+        }
     }
 
     override fun onHamburgerClicked() {
@@ -56,17 +76,15 @@ class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), H
         }
     }
 
-    private class PagerAdapter(fm: FragmentManager) :
+    private class PagerAdapter(fm: FragmentManager, val callbacks: HomeFragmentCallbacks) :
         FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                ChallengesFragment()
+                ChallengesFragment.newInstance(callbacks)
             } else {
                 PowerUpsFragment()
             }
         }
-
         override fun getCount() = 2
-
     }
 }

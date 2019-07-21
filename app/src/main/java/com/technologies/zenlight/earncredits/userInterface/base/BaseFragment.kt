@@ -49,8 +49,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel> : Fragment() {
      */
     abstract val viewModel: V?
 
-    abstract var progressSpinner: View?
-
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)

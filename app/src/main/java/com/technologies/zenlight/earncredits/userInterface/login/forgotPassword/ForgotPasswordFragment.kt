@@ -31,7 +31,6 @@ class ForgotPasswordFragment : BaseFragment<ForgotPasswordLayoutBinding, ForgotP
 
     override var layoutId: Int = R.layout.forgot_password_layout
 
-    override var progressSpinner: View? = null
 
     companion object {
         fun newInstance(): ForgotPasswordFragment = ForgotPasswordFragment()

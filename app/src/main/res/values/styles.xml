@@ -20,10 +20,12 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     
-    <style name="TextInputLayoutAppearance" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="TextInputStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Hint color and label color in FALSE state -->
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorPrimary">@color/white</item>
+        <item name="colorControlActivated">@color/pac_yellow</item>
+
     </style>
     
     <style name="ArcadeTextView" parent="Widget.AppCompat.TextView">
@@ -37,10 +39,6 @@
     
     <style name="AppTheme.ClearBackGroundWhiteRipple">
         <item name="colorControlHighlight">@color/super_transparent_white</item>
-    </style>
-    
-    <style name="TextInputStyle" parent="Widget.Design.TextInputLayout">
-        <item name="colorControlActivated">@color/transparent_white</item>
     </style>
 
 </resources>

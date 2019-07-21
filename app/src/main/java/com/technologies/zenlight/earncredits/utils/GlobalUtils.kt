@@ -3,6 +3,7 @@ package com.technologies.zenlight.earncredits.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Patterns
+import java.util.*
 
 
 var isUnitTesting = false
@@ -17,3 +18,7 @@ fun isConnected(context: Context): Boolean {
 fun isEmailValid(email: String): Boolean {
     return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
+
+val dateFormatter = java.text.SimpleDateFormat("MM/dd/yyyy", Locale.US)
+
+val REMOVE_NON_DIGITS = Regex("[^\\d]")

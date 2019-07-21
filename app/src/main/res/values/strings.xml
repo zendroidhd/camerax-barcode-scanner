@@ -4,4 +4,11 @@
     <string name="sign_up_message">to join the community</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="password">Password</string>
+    
+    <string-array name="credits_amount_list">
+        <item>Small Task: 2</item>
+        <item>Major Task: 5</item>
+        <item>Mega Task: 10</item>
+        <item>10x Task: 20</item>
+    </string-array>
 </resources>

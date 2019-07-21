@@ -19,8 +19,6 @@ class PowerUpsFragment: BaseFragment<PowerUpsLayoutBinding, PowerUpsViewModel>()
 
     override var layoutId: Int = R.layout.power_ups_layout
 
-    override var progressSpinner: View? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(PowerUpsViewModel::class.java)
         super.onCreate(savedInstanceState)

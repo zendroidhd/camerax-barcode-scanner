@@ -41,7 +41,6 @@ class LoginFragment : BaseFragment<LoginHomeScreenBinding, LoginFragmentViewMode
 
     override var layoutId: Int = R.layout.login_home_screen
 
-    override var progressSpinner: View? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
