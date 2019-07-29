@@ -1,4 +1,4 @@
-package com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.createNewChallenge
+package com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge
 
 import android.app.Activity
 import android.content.Context
@@ -13,10 +13,9 @@ import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.data.model.api.Challenges
 import com.technologies.zenlight.earncredits.databinding.CreateNewChallengeLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
-import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.ChallengesCallbacks
+import com.technologies.zenlight.earncredits.userInterface.home.challenges.ChallengesCallbacks
 import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivityCallbacks
 import com.technologies.zenlight.earncredits.utils.REMOVE_NON_DIGITS
-import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
 import com.technologies.zenlight.earncredits.utils.dateFormatter
 import com.technologies.zenlight.earncredits.utils.showAlertDialog
 import java.util.*

@@ -11,31 +11,31 @@ import javax.inject.Inject
 class HomeFragmentDataModel @Inject constructor(private val dataManager: AppDataManager) {
 
 
-    fun getUserProfile(viewModel: HomeFragmentViewModel) {
-        val userId = dataManager.getSharedPrefs().userId
-        val db = FirebaseFirestore.getInstance()
-        db.collection(USERS_COLLECTION)
-            .whereEqualTo("id", userId)
-            .get()
-            .addOnCompleteListener { task ->
-
-                if (task.isSuccessful) {
-                    val userProfiles = task.result!!.toObjects(UserProfile::class.java)
-                    if (userProfiles.isNotEmpty()) {
-                        viewModel.userProfile = userProfiles[0]
-                        viewModel.callbacks?.onUserProfileReturnedSuccessfully()
-
-                    } else {
-                        //should never happen at this point
-                        viewModel.callbacks?.handleError("Error", "Error retrieving profile details")
-                    }
-
-                } else {
-                    val message = task.exception?.message ?: "Authentication Failed (F)"
-                    viewModel.callbacks?.handleError("Error", message)
-                }
-            }
-    }
+//    fun getUserProfile(viewModel: HomeFragmentViewModel) {
+//        val userId = dataManager.getSharedPrefs().userId
+//        val db = FirebaseFirestore.getInstance()
+//        db.collection(USERS_COLLECTION)
+//            .whereEqualTo("id", userId)
+//            .get()
+//            .addOnCompleteListener { task ->
+//
+//                if (task.isSuccessful) {
+//                    val userProfiles = task.result!!.toObjects(UserProfile::class.java)
+//                    if (userProfiles.isNotEmpty()) {
+//                        viewModel.userProfile = userProfiles[0]
+//                        viewModel.callbacks?.onUserProfileReturnedSuccessfully()
+//
+//                    } else {
+//                        //should never happen at this point
+//                        viewModel.callbacks?.handleError("Error", "Error retrieving profile details")
+//                    }
+//
+//                } else {
+//                    val message = task.exception?.message ?: "Authentication Failed (F)"
+//                    viewModel.callbacks?.handleError("Error", message)
+//                }
+//            }
+//    }
 
     fun getEncouragements(viewModel: HomeFragmentViewModel) {
         //todo get encouragements where seen = false

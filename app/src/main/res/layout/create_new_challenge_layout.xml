@@ -9,7 +9,7 @@
         
         <variable
                 name = "viewModel"
-                type = "com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.createNewChallenge.CreateChallengeViewModel"/>
+                type = "com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge.CreateChallengeViewModel"/>
     
     </data>
     

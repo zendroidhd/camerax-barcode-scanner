@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.technologies.zenlight.earncredits.data.model.api.Challenges
 
 fun showAlertDialog(activity: Activity?, title: String, message: String, negativeBtnText:String = "OK"){
     activity?.let {
@@ -58,6 +59,22 @@ fun showForgotPasswordAlertDialog(activity: Activity?, onForgotPassword: ()-> Un
                 .setNegativeButton("Try Again") {_, _ -> }
                 .setPositiveButton("Forgot Password?") {_, _ ->
                     onForgotPassword()
+                }
+            dialog.show()
+        }
+    }
+}
+
+fun showCompleteChallengeAlertDialog(activity: Activity?,challenges: Challenges, OnCompleteChallenge: (challenge: Challenges)-> Unit) {
+
+    activity?.let {
+        if (!it.isFinishing && !it.isDestroyed){
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(activity)
+            dialog.setTitle("Complete Challenge")
+                .setMessage("Do you want to mark this challenge as completed?")
+                .setNegativeButton("No") {_, _ -> }
+                .setPositiveButton("Yes") {_, _ ->
+                    OnCompleteChallenge(challenges)
                 }
             dialog.show()
         }

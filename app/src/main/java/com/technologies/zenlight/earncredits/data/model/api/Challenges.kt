@@ -28,4 +28,13 @@ class Challenges {
         date.time = createdOn * 1000
         return dateFormatter.format(date)
     }
+
+    @Exclude
+    fun getDaysLeftToComplete(): Int {
+        val today = Date().time
+        val completedBy = completeBy * 1000
+        val diff: Long = completedBy - today
+        val numOfDays = (diff / (1000 * 60 * 60 * 24)).toInt()
+        return numOfDays
+    }
 }

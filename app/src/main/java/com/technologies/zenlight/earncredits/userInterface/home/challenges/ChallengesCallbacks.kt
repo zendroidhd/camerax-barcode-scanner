@@ -1,6 +1,7 @@
-package com.technologies.zenlight.earncredits.userInterface.home.challengesFragment
+package com.technologies.zenlight.earncredits.userInterface.home.challenges
 
 import android.app.Activity
+import com.technologies.zenlight.earncredits.data.model.api.Challenges
 
 interface ChallengesCallbacks {
 
@@ -15,4 +16,6 @@ interface ChallengesCallbacks {
     fun onAddNewChallengeClicked()
 
     fun requestsChallenges()
+
+    fun onCompleteChallengeClicked(challenge: Challenges)
 }

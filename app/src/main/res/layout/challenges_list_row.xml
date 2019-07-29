@@ -15,7 +15,7 @@
                 android:id="@+id/iv_complete"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                tools:src="@drawable/green_toggle"
+                tools:src="@drawable/green_toggle_selected"
                 android:layout_gravity="center"
                 android:layout_alignParentEnd="true"
                 android:background="?attr/selectableItemBackgroundBorderless"

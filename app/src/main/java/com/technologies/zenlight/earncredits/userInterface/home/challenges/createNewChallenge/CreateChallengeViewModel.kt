@@ -1,4 +1,4 @@
-package com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.createNewChallenge
+package com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge
 
 import com.technologies.zenlight.earncredits.data.model.api.Challenges
 import com.technologies.zenlight.earncredits.userInterface.base.BaseViewModel

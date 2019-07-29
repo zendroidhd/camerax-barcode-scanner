@@ -1,25 +1,28 @@
-package com.technologies.zenlight.earncredits.userInterface.home.challengesFragment
+package com.technologies.zenlight.earncredits.userInterface.home.challenges
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.orhanobut.logger.Logger
 import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.data.model.api.Challenges
 import com.technologies.zenlight.earncredits.databinding.ChallengesLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
-import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.createNewChallenge.CreateChallengeFragment
+import com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge.CreateChallengeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivityCallbacks
 import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragmentCallbacks
-import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
 import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
 import com.technologies.zenlight.earncredits.utils.showAlertDialog
-import okhttp3.Challenge
+import com.technologies.zenlight.earncredits.utils.showCompleteChallengeAlertDialog
 import javax.inject.Inject
 
 class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewModel>(), ChallengesCallbacks {
@@ -30,6 +33,7 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
     private var challengesAdapter: ChallengesAdapter? = null
     private val challengesList = ArrayList<Challenges>()
     private var parentCallbacks: HomeActivityCallbacks? = null
+    private var paint: Paint? = null
 
     override var viewModel: ChallengesViewModel? = null
 
@@ -38,9 +42,7 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
     override var layoutId: Int = R.layout.challenges_layout
 
     companion object {
-        private var homeFragmentCallbacks: HomeFragmentCallbacks? = null
-        fun newInstance(callback: HomeFragmentCallbacks) : ChallengesFragment {
-            homeFragmentCallbacks = callback
+        fun newInstance() : ChallengesFragment {
             return ChallengesFragment()
         }
     }
@@ -64,6 +66,7 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel?.setUpObservers()
         setUpRecyclerView()
         requestsChallenges()
 
@@ -106,6 +109,10 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
         }
     }
 
+    override fun onCompleteChallengeClicked(challenge: Challenges) {
+        showCompleteChallengeAlertDialog(activity,challenge,::completeChallenge)
+    }
+
     override fun getActivityContext(): Activity? {
         return activity
     }
@@ -113,7 +120,6 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
     override fun requestsChallenges() {
         parentCallbacks?.showProgressSpinnerView()
         viewModel?.getAllChallenges()
-        homeFragmentCallbacks?.queryData()
     }
 
     private fun setUpRecyclerView() {
@@ -124,10 +130,21 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
         }
     }
 
+
     private fun hideAllProgressSpinners() {
         parentCallbacks?.hideProgressSpinnerView()
         dataBinding.swipeContainer.isRefreshing = false
     }
 
+    private fun completeChallenge(challenge: Challenges) {
+        viewModel?.completeChallenge(challenge)
+    }
+
+    private fun getPaint(): Paint {
+        if (paint == null) {
+            paint = Paint()
+        }
+        return paint!!
+    }
 
 }

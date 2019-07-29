@@ -10,13 +10,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.ViewModelProviders
 import com.technologies.zenlight.earncredits.BR
 import com.technologies.zenlight.earncredits.R
+import com.technologies.zenlight.earncredits.data.model.api.UserProfile
 import com.technologies.zenlight.earncredits.databinding.HomeLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
-import com.technologies.zenlight.earncredits.userInterface.home.challengesFragment.ChallengesFragment
+import com.technologies.zenlight.earncredits.userInterface.home.challenges.ChallengesFragment
 import com.technologies.zenlight.earncredits.userInterface.home.mainMenu.MainMenuFragment
 import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsFragment
-import com.technologies.zenlight.earncredits.utils.addFragmentHorizontally
-import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontally
 import com.technologies.zenlight.earncredits.utils.replaceFragmentHorizontallyReversed
 import com.technologies.zenlight.earncredits.utils.showAlertDialog
 import javax.inject.Inject
@@ -49,12 +48,8 @@ class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), H
         }
         dataBinding.vpMain.adapter = pagerAdapter
         dataBinding.viewpagertab.setupWithViewPager(dataBinding.vpMain)
-        queryData()
+        viewModel?.setUpObservers()
         return dataBinding.root
-    }
-
-    override fun queryData() {
-        viewModel?.getUserProfile()
     }
 
     override fun handleError(title: String, body: String) {
@@ -80,7 +75,7 @@ class HomeFragment : BaseFragment<HomeLayoutBinding, HomeFragmentViewModel>(), H
         FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                ChallengesFragment.newInstance(callbacks)
+                ChallengesFragment.newInstance()
             } else {
                 PowerUpsFragment()
             }

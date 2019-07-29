@@ -6,7 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
+    val compositeDisposable = CompositeDisposable()
     private var mIsLoading = ObservableBoolean(false)
 
     override fun onCleared() {
