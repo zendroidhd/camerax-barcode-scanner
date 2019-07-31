@@ -20,9 +20,7 @@ import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
 import com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge.CreateChallengeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivityCallbacks
 import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragmentCallbacks
-import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
-import com.technologies.zenlight.earncredits.utils.showAlertDialog
-import com.technologies.zenlight.earncredits.utils.showCompleteChallengeAlertDialog
+import com.technologies.zenlight.earncredits.utils.*
 import javax.inject.Inject
 
 class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewModel>(), ChallengesCallbacks {
@@ -94,6 +92,10 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
             challengesList.addAll(it.challengesList)
             challengesAdapter?.notifyDataSetChanged()
         }
+
+        if (challengesList.isEmpty()) {
+            showNoChallengesFoundPage()
+        }
     }
 
     override fun showNoChallengesFoundPage() {
@@ -113,6 +115,10 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
         showCompleteChallengeAlertDialog(activity,challenge,::completeChallenge)
     }
 
+    override fun onDeleteChallengeClicked(challenge: Challenges) {
+        showDeleteChallengeAlertDialog(activity,challenge,::deleteChallenge)
+    }
+
     override fun getActivityContext(): Activity? {
         return activity
     }
@@ -128,6 +134,11 @@ class ChallengesFragment: BaseFragment<ChallengesLayoutBinding, ChallengesViewMo
             layoutManager = LinearLayoutManager(activity)
             adapter = challengesAdapter
         }
+    }
+
+    private fun deleteChallenge(challenge: Challenges) {
+        parentCallbacks?.showProgressSpinnerView()
+        viewModel?.removeChallenge(challenge)
     }
 
 

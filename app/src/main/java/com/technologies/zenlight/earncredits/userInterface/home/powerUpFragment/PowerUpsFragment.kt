@@ -1,6 +1,7 @@
 package com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,8 +14,13 @@ import com.technologies.zenlight.earncredits.R
 import com.technologies.zenlight.earncredits.data.model.api.PowerUps
 import com.technologies.zenlight.earncredits.databinding.PowerUpsLayoutBinding
 import com.technologies.zenlight.earncredits.userInterface.base.BaseFragment
+import com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge.CreateChallengeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.homeActivity.HomeActivityCallbacks
+import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.createNewPowerup.CreateNewPowerupFragment
+import com.technologies.zenlight.earncredits.utils.addFragmentFadeIn
 import com.technologies.zenlight.earncredits.utils.showAlertDialog
+import com.technologies.zenlight.earncredits.utils.showDeletePowerUpAlertDialog
+import com.technologies.zenlight.earncredits.utils.showUserPowerupAlertDialog
 import javax.inject.Inject
 
 class PowerUpsFragment: BaseFragment<PowerUpsLayoutBinding, PowerUpsViewModel>(), PowerUpsCallbacks {
@@ -34,10 +40,16 @@ class PowerUpsFragment: BaseFragment<PowerUpsLayoutBinding, PowerUpsViewModel>()
 
     override var layoutId: Int = R.layout.power_ups_layout
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parentCallbacks = context as HomeActivityCallbacks
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(PowerUpsViewModel::class.java)
         viewModel?.callbacks = this
         viewModel?.dataModel = dataModel
+        viewModel?.setUpObservers()
         super.onCreate(savedInstanceState)
     }
 
@@ -75,6 +87,17 @@ class PowerUpsFragment: BaseFragment<PowerUpsLayoutBinding, PowerUpsViewModel>()
             powerUpsList.addAll(it.powerUpsList)
             powerUpsAdapter?.notifyDataSetChanged()
         }
+
+        if (powerUpsList.isEmpty()) {
+            showNoPowerUpsFoundPage()
+        }
+    }
+
+    override fun showNotEnoughCreditsAlert() {
+        hideAllProgressSpinners()
+        val title = "You need more credits"
+        val msg = "You don't have enough credits to use this power up, stay focused and keep grinding."
+        showAlertDialog(activity,title,msg)
     }
 
     override fun showNoPowerUpsFoundPage() {
@@ -87,16 +110,39 @@ class PowerUpsFragment: BaseFragment<PowerUpsLayoutBinding, PowerUpsViewModel>()
     }
 
     override fun onAddNewPowerUpClicked() {
-        Log.d("","clicked")
+        baseActivity?.let {
+            val manager = it.supportFragmentManager
+            val fragment = CreateNewPowerupFragment.newInstance(this)
+            addFragmentFadeIn(fragment,manager,"CreatePowerup",null)
+        }
     }
 
     override fun onCompletePowerUpClicked(powerUps: PowerUps) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showUserPowerupAlertDialog(activity,powerUps,powerUps.cost,::usePowerUp)
+    }
+
+    override fun onDeletePowerupClicked(powerUps: PowerUps) {
+        showDeletePowerUpAlertDialog(activity,powerUps,::deletePowerUp)
     }
 
     override fun requestPowerUps() {
         parentCallbacks?.showProgressSpinnerView()
         viewModel?.getAllPowerUps()
+    }
+
+    override fun onPowerUpSuccessfullyUsed(powerUps: PowerUps) {
+        hideAllProgressSpinners()
+        Log.d("Powerup","successfully used")
+    }
+
+    private fun usePowerUp(powerUps: PowerUps) {
+        parentCallbacks?.showProgressSpinnerView()
+        viewModel?.decreaseCreditsForUsedPowerup(powerUps)
+    }
+
+    private fun deletePowerUp(powerUps: PowerUps) {
+        parentCallbacks?.showProgressSpinnerView()
+        viewModel?.removePowerup(powerUps)
     }
 
     private fun setUpRecyclerView() {

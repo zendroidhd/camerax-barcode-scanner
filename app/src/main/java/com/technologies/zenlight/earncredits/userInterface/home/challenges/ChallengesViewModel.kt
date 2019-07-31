@@ -77,6 +77,16 @@ class ChallengesViewModel : BaseViewModel() {
         }
     }
 
+    fun removeChallenge(challenge: Challenges) {
+        callbacks?.getActivityContext()?.let { activity ->
+            if (isConnected(activity)) {
+                dataModel?.removeChallenge(this, challenge)
+            } else {
+                callbacks?.handleError(NO_NETWORK_TITLE, NO_NETWORK_BODY)
+            }
+        }
+    }
+
     fun completeChallenge(challenge: Challenges) {
         callbacks?.getActivityContext()?.let { activity ->
             if (isConnected(activity)) {

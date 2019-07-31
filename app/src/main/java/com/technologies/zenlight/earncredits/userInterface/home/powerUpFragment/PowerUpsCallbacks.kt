@@ -17,5 +17,11 @@ interface PowerUpsCallbacks {
 
     fun onCompletePowerUpClicked(powerUps: PowerUps)
 
+    fun onPowerUpSuccessfullyUsed(powerUps: PowerUps)
+
+    fun onDeletePowerupClicked(powerUps: PowerUps)
+
+    fun showNotEnoughCreditsAlert()
+
     fun requestPowerUps()
 }

@@ -61,10 +61,39 @@ class PowerUpsDataModel @Inject constructor(private val dataManager: AppDataMana
             }
     }
 
+
+    fun decreaseCreditsForUsedPowerup(viewModel: PowerUpsViewModel, powerUps: PowerUps) {
+        viewModel.userProfile?.let { profile ->
+            val currentCredits = profile.credits
+            val newCredits = currentCredits - powerUps.cost
+
+            if (newCredits < 0) {
+                viewModel.callbacks?.showNotEnoughCreditsAlert()
+            } else {
+                profile.credits = newCredits
+                val db = FirebaseFirestore.getInstance()
+                db.collection(USERS_COLLECTION)
+                    .document(profile.id)
+                    .set(profile)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            pushUserProfileToObservers(profile)
+                            viewModel.callbacks?.onPowerUpSuccessfullyUsed(powerUps)
+                            removePowerup(viewModel, powerUps)
+
+                        } else {
+                            val message = task.exception?.message ?: "Error updating profile"
+                            viewModel.callbacks?.handleError("Error", message)
+                        }
+                    }
+            }
+        }
+    }
+
     /**
      * Removes the challenge from our Db
      */
-    private fun removePowerup(viewModel: PowerUpsViewModel, powerUps: PowerUps) {
+    fun removePowerup(viewModel: PowerUpsViewModel, powerUps: PowerUps) {
         val db = FirebaseFirestore.getInstance()
         db.collection(POWERUPS_COLLECTION)
             .document(powerUps.id)
@@ -72,12 +101,7 @@ class PowerUpsDataModel @Inject constructor(private val dataManager: AppDataMana
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     viewModel.powerUpsList.remove(powerUps)
-                    if (viewModel.powerUpsList.isEmpty()) {
-                        viewModel.callbacks?.showNoPowerUpsFoundPage()
-
-                    } else {
-                        viewModel.callbacks?.onPowerUpsReturnedSuccessfully()
-                    }
+                    viewModel.callbacks?.onPowerUpsReturnedSuccessfully()
                 } else {
                     val message = task.exception?.message ?: "Authentication Failed (F)"
                     viewModel.callbacks?.handleError("Error", message)

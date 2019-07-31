@@ -5,6 +5,7 @@ import com.technologies.zenlight.earncredits.userInterface.home.challenges.creat
 import com.technologies.zenlight.earncredits.userInterface.home.homeFragment.HomeFragment
 import com.technologies.zenlight.earncredits.userInterface.home.mainMenu.MainMenuFragment
 import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.PowerUpsFragment
+import com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.createNewPowerup.CreateNewPowerupFragment
 import com.technologies.zenlight.earncredits.userInterface.login.forgotPassword.ForgotPasswordFragment
 import com.technologies.zenlight.earncredits.userInterface.login.loginFragment.LoginFragment
 import com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpFragment
@@ -37,4 +38,7 @@ abstract class FragmentBuilder {
 
     @ContributesAndroidInjector
     internal abstract fun bindCreateChallengeFragment(): CreateChallengeFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindCreateNewPowerupFragment(): CreateNewPowerupFragment
 }

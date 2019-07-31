@@ -23,6 +23,10 @@ class ChallengesAdapter(private val challenges: ArrayList<Challenges>, private v
             binding.ivComplete.setOnClickListener{
                 callbacks.onCompleteChallengeClicked(challenge)
             }
+
+            binding.btnDelete.setOnClickListener{
+                callbacks.onDeleteChallengeClicked(challenge)
+            }
         }
 
        private fun toggleButton(challenge: Challenges) {

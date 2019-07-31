@@ -9,7 +9,7 @@
         
         <variable
                 name = "viewModel"
-                type = "com.technologies.zenlight.earncredits.userInterface.home.challenges.createNewChallenge.CreateChallengeViewModel"/>
+                type = "com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment.createNewPowerup.CreatePowerupViewModel"/>
     
     </data>
     
@@ -35,10 +35,10 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Create New Challenge"
-                    android:textColor="@color/pac_yellow"
-                    android:textSize="20sp"
+                    android:text="Create New PowerUp"
                     android:textAlignment="center"
+                    android:textColor="@color/arcade_red"
+                    android:textSize="20sp"
                     android:lineSpacingExtra="7dp"
                     style="@style/ArcadeTextView"
                     android:layout_gravity="center_horizontal"
@@ -60,57 +60,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="60dp"
-                    android:layout_marginTop="5dp"
                     android:background="@null"
                     android:cursorVisible="true"
-                    android:hint="Ex. Do 100 pushups"
+                    android:maxLines="5"
+                    android:layout_marginTop="5dp"
+                    android:maxHeight="200dp"
+                    android:hint="Ex. Spend an afteroon with my friends"
                     android:lineSpacingExtra="15dp"
                     android:imeOptions="actionDone"
                     android:inputType="textCapSentences|textMultiLine"
                     style="@style/TextInputStyle"
-                    android:textColor="@color/transparent_white"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/transparent_white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:fontFamily="@font/arcade_font"
                     />
-    
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Completion Date:"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
-                    style="@style/ArcadeTextView"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"/>
             
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_completion_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    tools:text="11/21/1989"
-                    android:textAllCaps="false"
-                    android:textSize="13sp"
-                    android:textAppearance="@style/Base.Widget.AppCompat.TextView"
-                    android:textColor="@color/transparent_white"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:paddingStart="0dp"
-                    android:fontFamily="@font/arcade_font"
-                    app:rippleColor="@color/super_transparent_white"
-                    android:onClick = "@{()-> viewModel.onSetDateClicked()}"
-                    />
-    
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Credits:"
+                    android:text="Cost:"
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     style="@style/ArcadeTextView"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginEnd="10dp"/>
     
             <FrameLayout
@@ -121,11 +94,11 @@
                     >
         
                 <Spinner
-                        android:id="@+id/spinner_credits"
+                        android:id="@+id/spinner_cost"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:background="?attr/selectableItemBackground"
-                        android:entries="@array/credits_amount_list"
+                        android:entries="@array/powerups_cost_list"
                         android:paddingEnd="25dp"/>
         
                 <ImageView
@@ -141,8 +114,8 @@
          
             
             <FrameLayout
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="bottom|end"
                     android:layout_marginTop="15dp"
                     >
@@ -150,9 +123,9 @@
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/btn_green_fab"
+                        android:src="@drawable/btn_red_fab"
                         android:layout_gravity="center"
-                        android:onClick = "@{()-> viewModel.onCreateNewChallengeClicked()}"
+                        android:onClick = "@{()-> viewModel.onCreateNewPowerupClicked()}"
                         />
                 
                 <ImageView

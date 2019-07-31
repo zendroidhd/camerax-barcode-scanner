@@ -14,11 +14,15 @@ class PowerUpsAdapter(private val powerUps: ArrayList<PowerUps>, private val cal
 
     inner class PowerUpsViewHolder(val binding: PowerUpsListRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(powerUp: PowerUps) {
-            binding.tvCreditsTitle.text = powerUp.description
+            binding.tvTitle.text = powerUp.description
             binding.tvCreditsValue.text = powerUp.cost.toString()
 
             binding.ivComplete.setOnClickListener{
+                callbacks.onCompletePowerUpClicked(powerUp)
+            }
 
+            binding.btnDelete.setOnClickListener {
+                callbacks.onDeletePowerupClicked(powerUp)
             }
         }
     }

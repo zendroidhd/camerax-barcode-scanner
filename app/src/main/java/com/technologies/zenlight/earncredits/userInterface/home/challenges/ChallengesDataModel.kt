@@ -118,7 +118,7 @@ class ChallengesDataModel @Inject constructor(private val dataManager: AppDataMa
     /**
      * Removes the challenge from our Db
      */
-    private fun removeChallenge(viewModel: ChallengesViewModel, challenge: Challenges) {
+     fun removeChallenge(viewModel: ChallengesViewModel, challenge: Challenges) {
         val db = FirebaseFirestore.getInstance()
         db.collection(CHALLENGES_COLLECTION)
             .document(challenge.id)
@@ -126,12 +126,7 @@ class ChallengesDataModel @Inject constructor(private val dataManager: AppDataMa
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     viewModel.challengesList.remove(challenge)
-                    if (viewModel.challengesList.isEmpty()) {
-                        viewModel.callbacks?.showNoChallengesFoundPage()
-
-                    } else {
-                        viewModel.callbacks?.onChallengesReturnedSuccessfully()
-                    }
+                    viewModel.callbacks?.onChallengesReturnedSuccessfully()
                 } else {
                     val message = task.exception?.message ?: "Authentication Failed (F)"
                     viewModel.callbacks?.handleError("Error", message)

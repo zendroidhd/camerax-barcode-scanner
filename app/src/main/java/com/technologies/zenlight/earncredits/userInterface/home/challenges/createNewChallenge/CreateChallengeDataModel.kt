@@ -13,7 +13,6 @@ class CreateChallengeDataModel @Inject constructor(private val dataManager: AppD
 
         val userId = dataManager.getSharedPrefs().userId ?: ""
         val db = FirebaseFirestore.getInstance()
-        val timeStamp: Long = System.currentTimeMillis() / 1000
         val newChallengeRef = db.collection(CHALLENGES_COLLECTION).document()
         val newChallengeId: String = newChallengeRef.id
         challenge.id = newChallengeId

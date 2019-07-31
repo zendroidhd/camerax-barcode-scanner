@@ -15,6 +15,8 @@ interface ChallengesCallbacks {
 
     fun onAddNewChallengeClicked()
 
+    fun onDeleteChallengeClicked(challenge: Challenges)
+
     fun requestsChallenges()
 
     fun onCompleteChallengeClicked(challenge: Challenges)

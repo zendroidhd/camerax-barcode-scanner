@@ -1,9 +1,13 @@
 package com.technologies.zenlight.earncredits.userInterface.home.powerUpFragment
 
 import android.annotation.SuppressLint
+import com.technologies.zenlight.earncredits.data.model.api.Challenges
 import com.technologies.zenlight.earncredits.data.model.api.PowerUps
 import com.technologies.zenlight.earncredits.data.model.api.UserProfile
 import com.technologies.zenlight.earncredits.userInterface.base.BaseViewModel
+import com.technologies.zenlight.earncredits.utils.NO_NETWORK_BODY
+import com.technologies.zenlight.earncredits.utils.NO_NETWORK_TITLE
+import com.technologies.zenlight.earncredits.utils.isConnected
 import com.technologies.zenlight.earncredits.utils.userProfileObservable
 import io.reactivex.Completable
 import io.reactivex.Observer
@@ -46,9 +50,41 @@ class PowerUpsViewModel : BaseViewModel() {
         userProfileObservable.subscribe(profileObserver)
     }
 
+    /********* OnClick Listeners ********/
+
+    fun onAddNewPowerUpClicked() {
+        callbacks?.onAddNewPowerUpClicked()
+    }
+
     /******** DataModel Requests **********/
 
     fun getAllPowerUps() {
-        dataModel?.getAllPowerUps(this)
+        callbacks?.getActivityContext()?.let { activity ->
+            if (isConnected(activity)) {
+                dataModel?.getAllPowerUps(this)
+            } else {
+                callbacks?.handleError(NO_NETWORK_TITLE, NO_NETWORK_BODY)
+            }
+        }
     }
+
+    fun decreaseCreditsForUsedPowerup(powerUps: PowerUps) {
+        callbacks?.getActivityContext()?.let { activity ->
+            if (isConnected(activity)) {
+                dataModel?.decreaseCreditsForUsedPowerup(this, powerUps)
+            } else {
+                callbacks?.handleError(NO_NETWORK_TITLE, NO_NETWORK_BODY)
+            }
+        }
+    }
+
+        fun removePowerup(powerUps: PowerUps) {
+            callbacks?.getActivityContext()?.let { activity ->
+                if (isConnected(activity)) {
+                    dataModel?.removePowerup(this, powerUps)
+                } else {
+                    callbacks?.handleError(NO_NETWORK_TITLE, NO_NETWORK_BODY)
+                }
+            }
+        }
 }

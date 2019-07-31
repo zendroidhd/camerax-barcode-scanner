@@ -11,4 +11,11 @@
         <item>Mega Task: 10</item>
         <item>10x Task: 20</item>
     </string-array>
+    
+    <string-array name="powerups_cost_list">
+        <item>Small Power-Up: 4</item>
+        <item>Major Power-Up: 10</item>
+        <item>Mega Power-Up: 20</item>
+        <item>10x Task: 40</item>
+    </string-array>
 </resources>
