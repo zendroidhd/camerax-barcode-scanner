@@ -10,7 +10,7 @@
         
         <variable
                 name="viewModel"
-                type="com.technologies.zenlight.earncredits.userInterface.login.signUp.SignUpViewModel"/>
+                type="com.technologies.zenlight.defaultapp.userInterface.login.signUp.SignUpViewModel"/>
     
     </data>
     
@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black_color"
+            android:background="@color/white"
             android:clickable="true"
             android:focusable="true"
             android:padding="15dp">
@@ -28,22 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="@color/transparent_white"
-                android:text="Game Options"
-                android:layout_gravity="center_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:fontFamily="@font/arcade_font"/>
-    
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/transparent_white"
                 android:text="Sign Up"
                 android:layout_gravity="center_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/arcade_font"
-                android:layout_marginTop="16dp"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    
         
         <View
                 android:layout_width="match_parent"
@@ -54,17 +42,12 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@null"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:cursorVisible="true"
-                android:hint="Enter Email"
+                android:hint="Email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:textColorHint="@color/transparent_white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/arcade_font"
                 android:layout_marginBottom="5dp"
                 />
     
@@ -75,15 +58,10 @@
                 android:layout_marginBottom="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:background="@null"
                 android:cursorVisible="true"
-                android:hint="Enter Code"
+                android:hint="Password"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/transparent_white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/arcade_font"
                 />
     
         <EditText
@@ -102,38 +80,20 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:fontFamily="@font/arcade_font"
                 />
-    
-    
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_exit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:text="Exit"
-                android:textAllCaps="false"
-                android:textSize="15sp"
-                android:textAppearance="@style/Base.Widget.AppCompat.TextView"
-                android:textColor="@color/transparent_white"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:fontFamily="@font/arcade_font"
-                app:rippleColor="@color/super_transparent_white"
-                android:onClick = "@{()-> viewModel.onExitClicked()}"
-                />
+        
     
     
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_start_new_game"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:text="Start New Game"
+                android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textSize="17sp"
+                app:rippleColor="@color/transparent_black"
                 android:textAppearance="@style/Base.Widget.AppCompat.TextView"
-                android:textColor="@color/pac_yellow"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:fontFamily="@font/arcade_font"
-                app:rippleColor="@color/super_transparent_white"
                 android:onClick="@{()-> viewModel.onStartNewGameClicked()}"
                 />
     

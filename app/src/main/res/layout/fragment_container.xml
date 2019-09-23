@@ -10,7 +10,7 @@
         
         <variable
                 name = "viewModel"
-                type = "com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivityViewModel"/>
+                type = "com.technologies.zenlight.defaultapp.userInterface.login.loginActivity.LoginActivityViewModel"/>
     
     </data>
     

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.technologies.zenlight.earncredits"
+          package="com.technologies.zenlight.defaultapp"
           xmlns:tools="http://schemas.android.com/tools"
         >
     
@@ -33,7 +33,7 @@
     
     
     <application
-            android:name="com.technologies.zenlight.earncredits.userInterface.EarnCreditsApplication"
+            android:name="com.technologies.zenlight.defaultapp.userInterface.AppApplication"
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@mipmap/ic_launcher"
@@ -45,15 +45,20 @@
             tools:replace="android:icon,android:fullBackupContent"
             >
       
-        <activity android:name="com.technologies.zenlight.earncredits.userInterface.login.loginActivity.LoginActivity"
+        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.login.loginActivity.LoginActivity"
                 android:screenOrientation="portrait">
+        </activity>
+        
+        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.main.MainActivity"
+                  android:screenOrientation="portrait"/>
+        
+        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.splashScreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".userInterface.home.homeActivity.HomeActivity"
-                  android:screenOrientation="portrait"/>
+
 
     </application>
 

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:tools="http://schemas.android.com/tools">
     
     <data>
         
-        <import type = "android.view.View"/>
+        <import type="android.view.View" />
         
         <variable
-                name = "viewModel"
-                type = "com.technologies.zenlight.earncredits.userInterface.login.loginFragment.LoginFragmentViewModel"/>
+                name="viewModel"
+                type="com.technologies.zenlight.defaultapp.userInterface.login.loginFragment.LoginFragmentViewModel" />
     
     </data>
     
@@ -18,155 +17,102 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         
-            
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black_color"
-            android:padding="15dp">
         
         <LinearLayout
-                android:id="@+id/layout_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                tools:visibility="visible"
-                android:orientation="vertical">
-    
-            <TextView
-                    android:id="@+id/tv_app_title_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pac_font"
-                    android:textSize="40sp"
-                    android:text="earn"
-                    android:textAlignment="center"
-                    android:textColor="@color/pac_yellow"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="50dp"/>
-    
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp">
+            
             <TextView
                     android:id="@+id/tv_app_title_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pac_font"
-                    android:textSize="40sp"
-                    android:text="credits"
-                    android:textAlignment="center"
-                    android:textColor="@color/pac_yellow"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="Title"
+                    android:textAlignment="center"
+                    android:textSize="40sp" />
             
-        </LinearLayout>
-        
-        
-        
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".2"/>
-        
-        <LinearLayout
-                android:id="@+id/layout_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                tools:visibility="visible"
-                >
             
-        <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:cursorVisible="true"
-                android:hint="Enter Email"
-                android:textAlignment="center"
-                android:imeOptions="actionDone"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:textColorHint="@color/transparent_white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/arcade_font"
-                />
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2" />
+            
+            <LinearLayout
+                    android:id="@+id/layout_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                
+                <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:cursorVisible="true"
+                        android:hint="Enter Email"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress" />
+                
+                <EditText
+                        android:id="@+id/et_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:cursorVisible="true"
+                        android:hint="Enter Code"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword" />
+                
+                
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_insert_coin"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="24dp"
+                        android:onClick="@{()-> viewModel.onSignInButtonClicked()}"
+                        android:text="Log In"
+                        android:textSize="20sp"
+                        app:backgroundTint="@color/transparent"
+                        app:cornerRadius="5dp"
+                        app:rippleColor="@color/transparent_white" />
+                
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_sign_up"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{()-> viewModel.onSignUpClicked()}"
+                        android:text="Sign Up"
+                        android:textAllCaps="false"
+                        app:rippleColor="@color/super_transparent_white" />
+                
+                
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_forgot_password"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{()-> viewModel.onForgotPasswordClicked()}"
+                        android:text="@string/forgot_password"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/Base.Widget.AppCompat.TextView"
+                        android:textSize="17sp"
+                        app:rippleColor="@color/super_transparent_white" />
+            </LinearLayout>
+            
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
         
-        <EditText
-                android:id="@+id/et_code"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:cursorVisible="true"
-                android:hint="Enter Code"
-                android:textAlignment="center"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/transparent_white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/arcade_font"
-                />
         
-        
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_insert_coin"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="Insert Coin"
-                android:textSize="20sp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:textColor="@color/arcade_red"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/arcade_font"
-                app:backgroundTint="@color/transparent"
-                app:rippleColor="@color/transparent_white"
-                app:cornerRadius="5dp"
-                android:onClick = "@{()-> viewModel.onEnterButtonClicked()}"
-                />
-    
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_sign_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Sign Up"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="@color/transparent_white"
-                android:layout_gravity="center_horizontal"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:onClick = "@{()-> viewModel.onSignUpClicked()}"
-                android:fontFamily="@font/arcade_font"
-                app:rippleColor="@color/super_transparent_white"
-                />
-    
-    
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/forgot_password"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textAppearance="@style/Base.Widget.AppCompat.TextView"
-                android:textColor="@color/transparent_white"
-                android:layout_gravity="center_horizontal"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:onClick = "@{()-> viewModel.onForgotPasswordClicked()}"
-                android:fontFamily="@font/arcade_font"
-                app:rippleColor="@color/super_transparent_white"
-                />
         </LinearLayout>
-        
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-    
-    
-    </LinearLayout>
     
     </FrameLayout>
 
