@@ -1,4 +1,4 @@
-package com.technologies.zenlight.defaultapp
+package com.technologies.zenlight.daggerinmodule
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.technologies.zenlight.defaultapp
+package com.technologies.zenlight.daggerinmodule
 
 import org.junit.Test
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.technologies.zenlight.defaultapp"
+          package="com.technologies.zenlight.daggerinmodule"
           xmlns:tools="http://schemas.android.com/tools"
         >
     
@@ -33,7 +33,6 @@
     
     
     <application
-            android:name="com.technologies.zenlight.defaultapp.userInterface.AppApplication"
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@mipmap/ic_launcher"
@@ -44,21 +43,15 @@
             android:theme="@style/AppTheme"
             tools:replace="android:icon,android:fullBackupContent"
             >
-      
-        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.login.loginActivity.LoginActivity"
-                android:screenOrientation="portrait">
-        </activity>
         
-        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.main.MainActivity"
-                  android:screenOrientation="portrait"/>
-        
-        <activity android:name="com.technologies.zenlight.defaultapp.userInterface.splashScreen.SplashActivity">
+        <activity android:name="com.technologies.zenlight.daggerinmodule.ui.MainActivity"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
 
     </application>
 

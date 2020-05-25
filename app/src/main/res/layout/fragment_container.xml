@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android = "http://schemas.android.com/apk/res/android"
-        xmlns:card_view = "http://schemas.android.com/apk/res-auto"
-        xmlns:tools = "http://schemas.android.com/tools">
-    
-    <data>
-        
-        <import type = "android.view.View"/>
-        
-        <variable
-                name = "viewModel"
-                type = "com.technologies.zenlight.defaultapp.userInterface.login.loginActivity.LoginActivityViewModel"/>
-    
-    </data>
-    
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     
     <FrameLayout
-            android:layout_width = "match_parent"
-            android:layout_height = "match_parent"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         
-        
-        <FrameLayout
-                android:id = "@+id/fragment_container"
-                android:layout_width = "match_parent"
-                android:layout_height = "match_parent">
-        
-        </FrameLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+            
+            <Button
+                    android:id="@+id/btn_activity"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Activity Injection" />
     
-        <include layout="@layout/default_progress_spinner"
-                 android:id="@+id/layout_progress"/>
+            <Button
+                    android:id="@+id/btn_constructor"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:padding="16dp"
+                    android:text="Constructor Injection" />
+        
+        </LinearLayout>
     
     </FrameLayout>
 

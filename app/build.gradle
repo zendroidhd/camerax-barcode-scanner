@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.technologies.zenlight.defaultapp"
+        applicationId "com.technologies.zenlight.daggerinmodule"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -41,7 +40,6 @@ android {
 
     signingConfigs {
 
-        //Todo create dev and release key stores
         releaseConfig {
             keyAlias "zenlight"
             keyPassword "android"
@@ -64,15 +62,15 @@ android {
     productFlavors {
 
         developmentFlavor {
-            applicationId "com.technologies.zenlight.defaultapp.dev"
-            resValue "string", "app_name", "Default App Dev"
+            applicationId "com.technologies.zenlight.daggerinmodule.dev"
+            resValue "string", "app_name", "Dagger In Module Dev"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
         }
 
         productionFlavor {
 
-            applicationId "com.technologies.zenlight.defaultapp"
-            resValue "string", "app_name", "Default App"
+            applicationId "com.technologies.zenlight.daggerinmodule"
+            resValue "string", "app_name", "Dagger In Module"
             // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
         }
     }
