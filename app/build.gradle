@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 29
 
     dataBinding {
         enabled = true
@@ -12,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId "com.technologies.zenlight.daggerinmodule"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 100
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -38,25 +38,6 @@ android {
         }
     }
 
-    signingConfigs {
-
-        releaseConfig {
-            keyAlias "zenlight"
-            keyPassword "android"
-            storePassword("android")
-            storeFile file('../signatures/earn_credits.jks')
-
-        }
-
-        devConfig {
-            keyAlias "zenlight-dev"
-            keyPassword "android"
-            storePassword "android"
-            storeFile file('../signatures/earn_credits_dev.jks')
-
-        }
-    }
-
     flavorDimensions "default"
 
     productFlavors {
@@ -64,14 +45,12 @@ android {
         developmentFlavor {
             applicationId "com.technologies.zenlight.daggerinmodule.dev"
             resValue "string", "app_name", "Dagger In Module Dev"
-            // manifestPlaceholders = [HOCKEYAPP_APP_ID: "986bf403262d40938568d5c3d3435575"]
         }
 
         productionFlavor {
 
             applicationId "com.technologies.zenlight.daggerinmodule"
             resValue "string", "app_name", "Dagger In Module"
-            // manifestPlaceholders = [HOCKEYAPP_APP_ID: "931d24b58e9249fe8c9e768a4b34f6e3"]
         }
     }
 }
@@ -82,89 +61,40 @@ dependencies {
     //Support Libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0-alpha04'
+    implementation 'androidx.core:core-ktx:1.4.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.google.firebase:firebase-firestore:21.1.1'
-    implementation 'com.google.firebase:firebase-auth:19.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //Testing libraries
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.espressoCore", {
-        exclude group: "com.android.support", module: "support-annotations"
-    })
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoCore"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoCore"
-    testImplementation "junit:junit:$rootProject.junit"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockito"
-    testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamCrest"
-    androidTestImplementation "org.hamcrest:hamcrest-library:$rootProject.hamCrest"
-    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$rootProject.espressoCore"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoCore"
-    testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
-
-    testImplementation 'org.robolectric:robolectric:4.2.1'
-    testImplementation 'org.robolectric:multidex:3.4.2'
-    testImplementation 'org.robolectric:shadows-support-v4:3.3.2'
-
-    //REST libraries
-    implementation "com.google.code.gson:gson:$rootProject.gson"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttp"
-    implementation("com.squareup.retrofit2:retrofit:$rootProject.retrofit") {
-        exclude group: "xpp3", module: "xpp3"
-        exclude group: "stax", module: "stax-api"
-        exclude group: "stax", module: "stax"
-    }
-    implementation("com.squareup.retrofit2:converter-gson:$rootProject.retrofit") {
-        exclude group: "xpp3", module: "xpp3"
-        exclude group: "stax", module: "stax-api"
-        exclude group: "stax", module: "stax"
-    }
-
-    //our view manipulation libraries
-    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
-    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageVersion"
-    implementation "com.daimajia.easing:library:$rootProject.yoyoAnimations"
-    implementation "com.daimajia.androidanimations:library:$rootProject.yoyoAndroidAnimation"
-    implementation "com.commit451:PhotoView:$rootProject.photoView"
-
-    //our tools libraries
-    implementation "com.orhanobut:logger:$rootProject.orhanobutLogger"
-
     //our rxjava dependencies
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
     implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
-    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.rxjavaForRetrofit"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
-    // RxJava support for Room
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomDatabase"
-    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
 
     //our dagger2 dependencies
-    implementation "com.google.dagger:dagger:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    implementation "com.google.dagger:dagger:2.27"
+    implementation "com.google.dagger:dagger-android:2.25.4"
+    implementation "com.google.dagger:dagger-android-support:2.25.4"
+    kapt "com.google.dagger:dagger-compiler:2.25.4"
+    kapt "com.google.dagger:dagger-android-processor:2.25.4"
 
 
     // if you use the support libraries
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.25.4"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.25.4"
 
     // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$rootProject.archictectureComponents"
-    annotationProcessor "android.arch.lifecycle:common-java8:$rootProject.archictectureComponents"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:common-java8:1.1.1"
 
     // Room
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomDatabase"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
 }
