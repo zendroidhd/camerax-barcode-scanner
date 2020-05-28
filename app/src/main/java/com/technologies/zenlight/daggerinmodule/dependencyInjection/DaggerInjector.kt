@@ -13,7 +13,6 @@ object DaggerInjector {
         return component!!
     }
 
-
     private fun buildComponent(context: Context) {
         component = DaggerApplicationComponent
             .builder()

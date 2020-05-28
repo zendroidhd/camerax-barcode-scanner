@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class AlertHelper @Inject constructor(private val appContext: Context) {
 
-    fun showTestAlert(){
-        Toast.makeText(appContext, "Constructor successful", Toast.LENGTH_LONG).show()
+    fun showTestAlert() {
+        Toast.makeText(appContext, "Constructor Successful", Toast.LENGTH_SHORT).show()
     }
 }

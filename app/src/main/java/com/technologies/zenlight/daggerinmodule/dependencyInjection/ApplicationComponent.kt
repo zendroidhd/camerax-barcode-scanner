@@ -2,25 +2,24 @@ package com.technologies.zenlight.daggerinmodule.dependencyInjection
 
 import com.technologies.zenlight.daggerinmodule.ui.MainActivity
 import dagger.Component
+import dagger.android.AndroidInjection
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
+
 @Singleton
-@Component(
-    modules = [
-        AndroidInjectionModule::class,
-        AndroidSupportInjectionModule::class,
-        AppModule::class])
+@Component(modules = [
+AndroidInjectionModule::class,
+AndroidSupportInjectionModule::class,
+AppModule::class])
 interface ApplicationComponent {
 
-
-    /****** Activities ********/
+    /******** Activities *********/
 
     fun inject(mainActivity: MainActivity)
 
-
-    /******* Component Builder ********/
+    /******** Component Builder *********/
 
     @Component.Builder
     interface Builder {

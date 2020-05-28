@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var appContext: Context
 
     @Inject
-    lateinit var helper: AlertHelper
+    lateinit var alertHelper: AlertHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnConstructor.setOnClickListener {
-            helper.showTestAlert()
+            alertHelper.showTestAlert()
         }
     }
 
