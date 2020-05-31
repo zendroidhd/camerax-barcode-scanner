@@ -13,19 +13,11 @@
                 android:orientation="vertical">
             
             <Button
-                    android:id="@+id/btn_activity"
+                    android:id="@+id/btn_scan"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="Activity Injection" />
-    
-            <Button
-                    android:id="@+id/btn_constructor"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:padding="16dp"
-                    android:text="Constructor Injection" />
+                    android:text="Scan Barcode" />
         
         </LinearLayout>
     

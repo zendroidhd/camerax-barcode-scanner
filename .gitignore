@@ -1,55 +1,17 @@
-# Built application files
-/build
-/*/build/
-
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Gradle generated files
-.gradle/
-
-# Signing files
-.signing/
-
-# User-specific configurations
 *.iml
-.idea/
-
-# OS-specific files
+.gradle
+/local.properties
+/.idea/
+signatures
+*.keystore
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+build
+/captures
+.externalNativeBuild
+.cxx
 
-# files for the dex VM
-*.dex
+**/lint/
+lint/
+app/google-services.json
 
-# Java class files
-*.class
-
-# generated files
-bin/
-gen/
-out/
-
-# Eclipse project files
-.classpath
-.project
-
-# Android Studio
-*.apk
-*.ap_
-/*/local.properties
-/*/out
-/*/*/build
-/*/*/production
-*.iws
-*.ipr
-*~
-*.swp
+keystore.properties

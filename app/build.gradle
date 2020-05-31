@@ -2,17 +2,25 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
+
+
+    //Needed for compatibility
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
     dataBinding {
         enabled = true
     }
 
     defaultConfig {
-        applicationId "com.technologies.zenlight.daggerinmodule"
-        minSdkVersion 21
+        applicationId "com.technologies.zenlight.barcodescanner"
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 100
         versionName "1.0.0"
@@ -37,22 +45,6 @@ android {
             exclude group: 'org.apache.httpcomponents'
         }
     }
-
-    flavorDimensions "default"
-
-    productFlavors {
-
-        developmentFlavor {
-            applicationId "com.technologies.zenlight.daggerinmodule.dev"
-            resValue "string", "app_name", "Dagger In Module Dev"
-        }
-
-        productionFlavor {
-
-            applicationId "com.technologies.zenlight.daggerinmodule"
-            resValue "string", "app_name", "Dagger In Module"
-        }
-    }
 }
 
 dependencies {
@@ -68,6 +60,26 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //Used to fix guava bug
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
+
+    //CameraX
+    implementation "androidx.camera:camera-core:1.0.0-beta03"
+    implementation "androidx.camera:camera-camera2:1.0.0-beta03"
+    implementation "androidx.camera:camera-view:1.0.0-alpha10"
+    implementation "androidx.camera:camera-lifecycle:1.0.0-beta03"
+
+    //Firebase
+    implementation "io.grpc:grpc-okhttp:1.24.1"
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.1.1'
+    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.5'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:20.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.5'
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.3'
+
     //our rxjava dependencies
     implementation "io.reactivex.rxjava2:rxjava:2.2.9"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
@@ -77,23 +89,6 @@ dependencies {
 
 
     //our dagger2 dependencies
-    implementation "com.google.dagger:dagger:2.27"
-    implementation "com.google.dagger:dagger-android:2.25.4"
-    implementation "com.google.dagger:dagger-android-support:2.25.4"
-    kapt "com.google.dagger:dagger-compiler:2.25.4"
-    kapt "com.google.dagger:dagger-android-processor:2.25.4"
 
-
-    // if you use the support libraries
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.25.4"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.25.4"
-
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    annotationProcessor "android.arch.lifecycle:common-java8:1.1.1"
-
-    // Room
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
 }
