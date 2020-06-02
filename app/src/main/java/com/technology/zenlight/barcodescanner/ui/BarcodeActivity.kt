@@ -41,6 +41,8 @@ class BarcodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.barcode_layout)
 
+
+        //todo Step One: Initialize variables
         options = FirebaseVisionBarcodeDetectorOptions.Builder()
             .setBarcodeFormats(
                 FirebaseVisionBarcode.FORMAT_QR_CODE,
@@ -50,28 +52,28 @@ class BarcodeActivity : AppCompatActivity() {
 
         detector = FirebaseVision.getInstance().getVisionBarcodeDetector(options)
 
+        //todo Step 7: Start Image Analysis
         binding.previewView.post { startImageAnalysis() }
 
     }
 
-    private fun startImageAnalysis() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        cameraProviderFuture.addListener(Runnable {
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            bindPreview(cameraProvider)
-        }, ContextCompat.getMainExecutor(this))
-    }
 
     /**
      * Creates our Preview and ImageAnalyser
      */
     private fun bindPreview(cameraProvider: ProcessCameraProvider) {
+        //todo Step Two: Set up the preview view
+
         val executor = Executors.newSingleThreadExecutor()
+
         val displayMetrics =
             DisplayMetrics().also { binding.previewView.display.getRealMetrics(it) }
+
         val screenAspectRatio =
             CameraHelper.getAspectRatio(displayMetrics.widthPixels, displayMetrics.heightPixels)
+
         val rotation = binding.previewView.display.rotation
+
         val cameraSelector =
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
@@ -101,12 +103,25 @@ class BarcodeActivity : AppCompatActivity() {
     }
 
 
+    private fun startImageAnalysis() {
+        //todo Step Three: Create our Camera Provider
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener(Runnable {
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            bindPreview(cameraProvider)
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+
     private inner class MachineLearningAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
         private var resultsFound = false
 
         @SuppressLint("UnsafeExperimentalUsageError")
         override fun analyze(imageProxy: ImageProxy) {
+
+            //todo Step Four: Analyze image
+
             if (hasHalfSecondPassed()) {
                 val mediaImage = imageProxy.image
                 val degrees = imageProxy.imageInfo.rotationDegrees
@@ -122,6 +137,8 @@ class BarcodeActivity : AppCompatActivity() {
                         }
                 }
             }
+
+            //todo Step Five: Close the imageProxy
             imageProxy.close()
         }
 
@@ -144,6 +161,9 @@ class BarcodeActivity : AppCompatActivity() {
         private fun onBarcodeObserved(barcode: String?) {
             //the resultsFound boolean is used here so we don't get this called
             //called twice in the span of 1 second
+
+            //todo Step 6: Interpret results
+
             if (!barcode.isNullOrEmpty() && !resultsFound) {
                 resultsFound = true
                 val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
